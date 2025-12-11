@@ -4,6 +4,7 @@
  */
 package org.zabalburu.daw1.recyclon.modelo;
 
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,15 +26,21 @@ public class Usuario {
     private String password;
     private String email;
     private String nombre;
+    private String apellidos;
+    private Date fechaNacimiento;
+    private String telefono;
     private int rol;
     public static final int ADMIN = 1;
     public static final int USER = 2;
 
-    public boolean validarCredenciales(String usuario, String pass) {
+    
+    // esto irá en Servicio (hacen falta modificaciones)
+    
+    /*public boolean validarCredenciales(String usuario, String pass) {
         if (usuario == null || pass == null) {
             return false;
         }
         return this.nombreUsuario.equals(usuario) && this.password.equals(pass);
-    }
+    }*/
 
 }

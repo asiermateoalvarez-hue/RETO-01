@@ -33,7 +33,7 @@ public class Movimiento {
     public static final int PAGADO = 0;
     private Cliente cliente;
     private Proveedor proveedor;
-    private Banco banco;
+    private Cuenta cuentaBanco;
 
     /**
      * Valida que el movimiento tenga la estructura correcta según su tipo.

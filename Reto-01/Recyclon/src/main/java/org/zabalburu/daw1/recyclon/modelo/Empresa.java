@@ -18,17 +18,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Persona {
+public class Empresa {
 
     @EqualsAndHashCode.Include
     private Integer id;
+    private Integer cif;
     private String nombre;
-    private String apellidos;
     private String email;
     private String telefono;
     private String codigoPostal;
     private String ciudad;
-    private Date fechaNacimiento;
-    private String foto;
-
+    private String provincia;
+    private String logo;
 }

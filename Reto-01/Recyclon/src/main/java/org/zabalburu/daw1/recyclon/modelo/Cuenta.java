@@ -18,12 +18,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Banco {
+public class Cuenta {
 
     @EqualsAndHashCode.Include
     private Integer id;
     private String nombre;
     private String iban;
+    private String banco;
     private Double saldo;
     private List<Movimiento> movimientos;
 

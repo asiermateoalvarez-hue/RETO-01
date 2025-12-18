@@ -6,13 +6,15 @@ package org.zabalburu.daw1.recyclon.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.zabalburu.daw1.recyclon.dao.ClienteDAO;
 import org.zabalburu.daw1.recyclon.modelo.Cliente;
 
 /**
  *
  * @author DAW1
  */
-public class ClienteList implements ClienteDAO{
+public class ClienteList implements ClienteDAO {
+
     private List<Cliente> clientes = new ArrayList<>();
 
     @Override
@@ -22,13 +24,32 @@ public class ClienteList implements ClienteDAO{
 
     @Override
     public Cliente getCliente(Integer id) {
-        
-      
+        Cliente buscar = new Cliente();
+        buscar.setId(id);
+
+        int posc = clientes.indexOf(buscar);
+        if (posc != -1) {
+            return clientes.get(id);
+        } else {
+            return null;
+        }
+
     }
 
     @Override
     public Cliente getCliente(String nombre) {
-        
+        int i;
+        for (i = 0; i < clientes.size()
+                && !nombre.equalsIgnoreCase(clientes.get(i).getNombre());
+                i++);
+        if (i < clientes.size()) {
+            // Está en la posición i
+            return clientes.get(i);
+        } else {
+            // No está
+            return null;
+        }
+
     }
 
     @Override
@@ -36,21 +57,21 @@ public class ClienteList implements ClienteDAO{
         Cliente eliminar = new Cliente();
         eliminar.setId(id);
         clientes.remove(eliminar);
-        
+
     }
 
     @Override
     public Cliente addCliente(Cliente nuevo) {
         Integer id = 1;
         if (!clientes.isEmpty()) {
-            Integer max= clientes.get(0).getId();
+            Integer max = clientes.get(0).getId();
             for (int i = 0; i < clientes.size(); i++) {
-                if (clientes.size()> max) {
-                   max = clientes.get(i).getId();
+                if (clientes.size() > max) {
+                    max = clientes.get(i).getId();
                 }
-            
+
             }
-          id = max + 1;
+            id = max + 1;
         }
         nuevo.setId(id);
         clientes.add(nuevo);
@@ -60,10 +81,9 @@ public class ClienteList implements ClienteDAO{
     @Override
     public void modificarCliente(Cliente modificar) {
         int posc = clientes.indexOf(modificar);
-        
+
         if (posc != -1) {
-             clientes.set(posc, modificar);
-        }
+        clientes.set(posc, modificar);        }
     }
-    
+
 }

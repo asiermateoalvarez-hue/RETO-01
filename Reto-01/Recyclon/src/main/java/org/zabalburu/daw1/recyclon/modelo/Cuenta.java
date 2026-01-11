@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.zabalburu.daw1.recyclon.util.TipoMovimiento;
 
 /**
  *
@@ -38,9 +39,9 @@ public class Cuenta {
         Double saldoTotal = saldo;
         //Buscar con el for de colecciones cada uno de los movimientos de la lista
         for (Movimiento mov : movimientos) {
-            if (mov.getTipo() == Movimiento.COBRO) {
+            if (mov.getTipo() == TipoMovimiento.COBRO) {
                 saldoTotal += mov.getMonto();
-            } else if (mov.getTipo() == Movimiento.GASTO) {
+            } else if (mov.getTipo() == TipoMovimiento.GASTO) {
                 saldoTotal -= mov.getMonto();
             }
         }

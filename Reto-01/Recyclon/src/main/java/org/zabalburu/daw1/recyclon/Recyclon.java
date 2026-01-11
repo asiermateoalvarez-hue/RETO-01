@@ -4,6 +4,8 @@
 
 package org.zabalburu.daw1.recyclon;
 
+import org.zabalburu.daw1.recyclon.vista.LoginFrame;
+
 /**
  *
  * @author Aaron David
@@ -11,5 +13,7 @@ package org.zabalburu.daw1.recyclon;
 public class Recyclon {
 
     public static void main(String[] args) {
+        
+        
     }
 }

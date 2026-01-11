@@ -29,7 +29,7 @@ public class ProveedorList implements ProveedorDAO {
 
         int posc = proveedores.indexOf(buscar);
         if (posc != -1) {
-            return proveedores.get(id);
+            return proveedores.get(posc);
         } else {
             return null;
         }
@@ -64,7 +64,7 @@ public class ProveedorList implements ProveedorDAO {
         if (!proveedores.isEmpty()) {
             Integer max = proveedores.get(0).getId();
             for (int i = 0; i < proveedores.size(); i++) {
-                if (proveedores.size() > max) {
+                if (proveedores.get(i).getId() > max) {
                     max = proveedores.get(i).getId();
                 }
             }
@@ -78,7 +78,10 @@ public class ProveedorList implements ProveedorDAO {
 
     @Override
     public void modificarProveedor(Proveedor modificar) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        int posc = proveedores.indexOf(modificar);
+        if (posc != -1) {
+            proveedores.set(posc, modificar);
+        }
     }
 
 }

@@ -34,5 +34,5 @@ public class Config {
     public static final Font FUENTE_PEQUEÑA = new Font("Arial", Font.PLAIN, 12);
 
     // ========= RUTA RECURSOS =========
-    public static final String RUTA_IMAGENES = "/imagenes/";
+    public static final String RUTA_IMAGENES = "/resources/imagenes/";
 }

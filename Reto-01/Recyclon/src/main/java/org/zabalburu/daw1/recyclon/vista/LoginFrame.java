@@ -33,7 +33,7 @@ public class LoginFrame extends JFrame {
     private JLabel lblPassword = new JLabel("Contraseña");
     private JPasswordField pwdPassword = new JPasswordField();
     
-    private JLabel lblLogo = new JLabel(new ImageIcon(Config.RUTA_IMAGENES + "logo.png"));
+    private JLabel lblLogo = new JLabel(new ImageIcon(getClass().getResource(Config.RUTA_IMAGENES + "logo.png")));
     
     private JButton btnEntrar = new JButton("Entrar");
     private JButton btnSalir = new JButton("Salir");    //Panel Principal

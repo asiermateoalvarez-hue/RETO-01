@@ -7,6 +7,7 @@ package org.zabalburu.daw1.recyclon.dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.zabalburu.daw1.recyclon.modelo.Movimiento;
+import org.zabalburu.daw1.recyclon.util.TipoMovimiento;
 
 /**
  *
@@ -38,11 +39,11 @@ public class MovimientoList implements MovimientoDAO {
     public void deleteMovimiento(Integer id) {
         Movimiento eliminar = getMovimiento(id);
         movimientos.remove(eliminar);
-        eliminar.getCuentaBanco().getMovimientos().remove(id);
-        if (eliminar.getTipo() == Movimiento.COBRO) {
-            eliminar.getCliente().getMovimientos().remove(id);
+        eliminar.getCuentaBanco().getMovimientos().remove(eliminar);
+        if (eliminar.getTipo() == TipoMovimiento.COBRO) {
+            eliminar.getCliente().getMovimientos().remove(eliminar);
         } else {
-            eliminar.getProveedor().getMovimientos().remove(id);
+            eliminar.getProveedor().getMovimientos().remove(eliminar);
         }
 
     }
@@ -59,14 +60,15 @@ public class MovimientoList implements MovimientoDAO {
             }
             id = max + 1;
         }
+        nuevo.setId(id);
         movimientos.add(nuevo);
         nuevo.getCuentaBanco().getMovimientos().add(nuevo);
-        if (nuevo.getTipo() == Movimiento.COBRO) {
+        if (nuevo.getTipo() == TipoMovimiento.COBRO) {
             nuevo.getCliente().getMovimientos().add(nuevo);
         } else {
             nuevo.getProveedor().getMovimientos().add(nuevo);
         }
-        nuevo.setId(id);
+        
         return nuevo;
 
     }

@@ -20,11 +20,8 @@ import org.zabalburu.daw1.recyclon.util.TipoProveedor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Proveedor extends Empresa {
 
-    @EqualsAndHashCode.Include
-    private Integer id;
     private Date fechaAlta;
     private TipoProveedor tipo;
     private List<Movimiento> movimientos;

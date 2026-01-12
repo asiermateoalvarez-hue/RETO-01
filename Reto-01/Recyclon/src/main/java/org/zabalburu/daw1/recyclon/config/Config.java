@@ -6,6 +6,8 @@ package org.zabalburu.daw1.recyclon.config;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,8 +25,9 @@ public class Config {
 
     // ========= COLORES =========
     public static final Color COLOR_FONDO = new Color(218, 245, 228);
-    public static final Color COLOR_BOTONES = new Color(76, 175, 80);
-    public static final Color COLOR_TEXTO = new Color(33, 33, 33);
+    public static final Color COLOR_BOTON_ENTRAR = new Color(76, 175, 80);
+    public static final Color COLOR_BOTON_SALIR = new Color(244, 67, 54);
+    public static final Color COLOR_TEXTO = new Color(255, 255, 255);
     public static final Color COLOR_ERROR = new Color(244, 67, 54); // Rojo
     public static final Color COLOR_EXITO = new Color(76, 175, 80); // Verde
 
@@ -35,4 +38,25 @@ public class Config {
 
     // ========= RUTA RECURSOS =========
     public static final String RUTA_IMAGENES = "/resources/imagenes/";
+
+    public static ImageIcon cargarLogo(int ancho, int alto) {
+        try {
+            ImageIcon logo = new ImageIcon(Config.class.getResource(Config.RUTA_IMAGENES + "logo.png"));
+            Image img = logo.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+            return new ImageIcon(img);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
+    public static ImageIcon cargarIcono(String nombre, int ancho, int alto) {
+        try {
+            ImageIcon icon = new ImageIcon(Config.class.getResource(Config.RUTA_IMAGENES + nombre));
+            Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+            return new ImageIcon(img);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    
 }

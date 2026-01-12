@@ -19,11 +19,9 @@ import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Cliente extends Empresa {
 
-    @EqualsAndHashCode.Include
-    private Integer id;
     private Date fechaAlta;
     private Double limiteCredito;
     private List<Movimiento> movimientos;

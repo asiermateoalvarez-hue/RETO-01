@@ -16,13 +16,14 @@ import org.zabalburu.daw1.recyclon.dao.ProveedorList;
 import org.zabalburu.daw1.recyclon.modelo.Cliente;
 import org.zabalburu.daw1.recyclon.modelo.Movimiento;
 import org.zabalburu.daw1.recyclon.modelo.Proveedor;
+import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 import org.zabalburu.daw1.recyclon.util.PasswordManager;
 
 /**
  * Servicio centralizado para la gestión de la lógica de negocio de Recyclón.
- * Proporciona métodos para gestionar clientes, proveedores, movimientos y usuarios.
- * Implementa validaciones y reglas de negocio.
- * 
+ * Proporciona métodos para gestionar clientes, proveedores, movimientos y
+ * usuarios. Implementa validaciones y reglas de negocio.
+ *
  * @author Equipo03
  */
 public class RecyclonServicio {
@@ -32,11 +33,26 @@ public class RecyclonServicio {
     private ProveedorDAO proveedorDao = new ProveedorList();
     private UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
 
-    // ==================== MÉTODOS PROVEEDOR ====================
+    // ==================== USUARIOS ====================
+    public RecyclonServicio() {
+        Usuario user = new Usuario(1, "David", "Duque", "DavidDuque", "david");
+        nuevoUsuario(user, "david");
+        
+        user = new Usuario(2, "Asier", "Mateo", "AsierMateo", "asier");
+        nuevoUsuario(user, "asier");
+        
+        user = new Usuario(3, "Aaron", "Marrero", "AaronMarrero", "aaron");
+        nuevoUsuario(user, "aaron");
+        
+        user = new Usuario(4, "Diego", "Castillo", "DiegoCastillo", "diego");
+        nuevoUsuario(user, "diego");
 
+    }
+
+    // ==================== MÉTODOS PROVEEDOR ====================
     /**
      * Obtiene la lista completa de todos los proveedores registrados.
-     * 
+     *
      * @return Una lista con todos los proveedores.
      */
     public List<Proveedor> getProveedores() {
@@ -45,7 +61,7 @@ public class RecyclonServicio {
 
     /**
      * Obtiene un proveedor específico por su ID.
-     * 
+     *
      * @param id El ID del proveedor a buscar.
      * @return El proveedor encontrado, o null si no existe.
      */
@@ -55,7 +71,7 @@ public class RecyclonServicio {
 
     /**
      * Obtiene un proveedor específico por su nombre.
-     * 
+     *
      * @param nombre El nombre del proveedor a buscar.
      * @return El proveedor encontrado, o null si no existe.
      */
@@ -65,7 +81,7 @@ public class RecyclonServicio {
 
     /**
      * Elimina un proveedor de la base de datos por su ID.
-     * 
+     *
      * @param id El ID del proveedor a eliminar.
      */
     public void deleteProveedor(Integer id) {
@@ -74,10 +90,11 @@ public class RecyclonServicio {
 
     /**
      * Agrega un nuevo proveedor con validaciones.
-     * 
+     *
      * @param nuevo El proveedor a agregar. No puede ser null.
      * @return El proveedor agregado con su ID asignado.
-     * @throws IllegalArgumentException si los datos del proveedor son inválidos.
+     * @throws IllegalArgumentException si los datos del proveedor son
+     * inválidos.
      */
     public Proveedor addProveedor(Proveedor nuevo) {
         if (nuevo == null) {
@@ -94,8 +111,9 @@ public class RecyclonServicio {
 
     /**
      * Modifica los datos de un proveedor existente.
-     * 
-     * @param modificar El proveedor con los datos actualizados. No puede ser null.
+     *
+     * @param modificar El proveedor con los datos actualizados. No puede ser
+     * null.
      * @throws IllegalArgumentException si el proveedor es null.
      */
     public void modificarProveedor(Proveedor modificar) {
@@ -106,10 +124,9 @@ public class RecyclonServicio {
     }
 
     // ==================== MÉTODOS MOVIMIENTO ====================
-
     /**
      * Obtiene la lista completa de todos los movimientos registrados.
-     * 
+     *
      * @return Una lista con todos los movimientos.
      */
     public List<Movimiento> getMovimientos() {
@@ -118,7 +135,7 @@ public class RecyclonServicio {
 
     /**
      * Obtiene un movimiento específico por su ID.
-     * 
+     *
      * @param id El ID del movimiento a buscar.
      * @return El movimiento encontrado, o null si no existe.
      */
@@ -128,7 +145,7 @@ public class RecyclonServicio {
 
     /**
      * Elimina un movimiento de la base de datos por su ID.
-     * 
+     *
      * @param id El ID del movimiento a eliminar.
      */
     public void deleteMovimiento(Integer id) {
@@ -136,12 +153,13 @@ public class RecyclonServicio {
     }
 
     /**
-     * Agrega un nuevo movimiento con validaciones.
-     * Valida que el movimiento tenga estructura correcta según su tipo.
-     * 
+     * Agrega un nuevo movimiento con validaciones. Valida que el movimiento
+     * tenga estructura correcta según su tipo.
+     *
      * @param nuevo El movimiento a agregar. No puede ser null.
      * @return El movimiento agregado con su ID asignado.
-     * @throws IllegalArgumentException si los datos del movimiento son inválidos.
+     * @throws IllegalArgumentException si los datos del movimiento son
+     * inválidos.
      */
     public Movimiento addMovimiento(Movimiento nuevo) {
         if (nuevo == null) {
@@ -164,8 +182,9 @@ public class RecyclonServicio {
 
     /**
      * Modifica los datos de un movimiento existente.
-     * 
-     * @param modificar El movimiento con los datos actualizados. No puede ser null.
+     *
+     * @param modificar El movimiento con los datos actualizados. No puede ser
+     * null.
      * @throws IllegalArgumentException si el movimiento es null.
      */
     public void modificarMovimiento(Movimiento modificar) {
@@ -176,10 +195,9 @@ public class RecyclonServicio {
     }
 
     // ==================== MÉTODOS CLIENTE ====================
-
     /**
      * Obtiene la lista completa de todos los clientes registrados.
-     * 
+     *
      * @return Una lista con todos los clientes.
      */
     public List<Cliente> getClientes() {
@@ -188,7 +206,7 @@ public class RecyclonServicio {
 
     /**
      * Obtiene un cliente específico por su ID.
-     * 
+     *
      * @param id El ID del cliente a buscar.
      * @return El cliente encontrado, o null si no existe.
      */
@@ -198,7 +216,7 @@ public class RecyclonServicio {
 
     /**
      * Obtiene un cliente específico por su nombre.
-     * 
+     *
      * @param nombre El nombre del cliente a buscar.
      * @return El cliente encontrado, o null si no existe.
      */
@@ -208,7 +226,7 @@ public class RecyclonServicio {
 
     /**
      * Elimina un cliente de la base de datos por su ID.
-     * 
+     *
      * @param id El ID del cliente a eliminar.
      */
     public void deleteCliente(Integer id) {
@@ -217,7 +235,7 @@ public class RecyclonServicio {
 
     /**
      * Agrega un nuevo cliente con validaciones.
-     * 
+     *
      * @param nuevo El cliente a agregar. No puede ser null.
      * @return El cliente agregado con su ID asignado.
      * @throws IllegalArgumentException si los datos del cliente son inválidos.
@@ -237,8 +255,9 @@ public class RecyclonServicio {
 
     /**
      * Modifica los datos de un cliente existente.
-     * 
-     * @param modificar El cliente con los datos actualizados. No puede ser null.
+     *
+     * @param modificar El cliente con los datos actualizados. No puede ser
+     * null.
      * @throws IllegalArgumentException si el cliente es null.
      */
     public void modificarCliente(Cliente modificar) {
@@ -249,10 +268,9 @@ public class RecyclonServicio {
     }
 
     // ==================== MÉTODOS USUARIO ====================
-
     /**
      * Valida las credenciales de un usuario para el login.
-     * 
+     *
      * @param usuario Nombre de usuario.
      * @param password Contraseña en texto plano.
      * @return El usuario si las credenciales son válidas, null si no.
@@ -274,11 +292,12 @@ public class RecyclonServicio {
 
     /**
      * Crea un nuevo usuario con contraseña hasheada de forma segura.
-     * 
+     *
      * @param nuevo El usuario a crear. No puede ser null.
      * @param password La contraseña en texto plano. No puede estar vacía.
      * @return El usuario creado con su ID asignado.
-     * @throws IllegalArgumentException si los datos son inválidos o el usuario ya existe.
+     * @throws IllegalArgumentException si los datos son inválidos o el usuario
+     * ya existe.
      */
     public Usuario nuevoUsuario(Usuario nuevo, String password) {
         if (nuevo == null) {

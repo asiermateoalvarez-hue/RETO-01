@@ -5,6 +5,7 @@
 package org.zabalburu.daw1.recyclon.vista;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -88,6 +89,7 @@ public class LoginFrame extends JFrame {
         btnEntrar.setFont(Config.FUENTE_PEQUEÑA);
         btnEntrar.setForeground(Config.COLOR_TEXTO);
         btnEntrar.setIconTextGap(20);
+        btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
         pnlBotones.add(btnEntrar);
 
         btnSalir.setIcon(Config.cargarIcono("salir.png", 30, 30));
@@ -96,6 +98,7 @@ public class LoginFrame extends JFrame {
         btnSalir.setForeground(Config.COLOR_TEXTO);
         btnSalir.setBackground(Config.COLOR_BOTON_SALIR);
         btnSalir.setIconTextGap(20);
+        btnSalir.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnSalir.addActionListener(e -> {
             System.exit(0);
         });
@@ -108,6 +111,7 @@ public class LoginFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.getRootPane().setDefaultButton(btnEntrar);
 
     }
 

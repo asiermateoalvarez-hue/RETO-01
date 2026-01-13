@@ -39,7 +39,6 @@ public class MovimientoList implements MovimientoDAO {
     public void deleteMovimiento(Integer id) {
         Movimiento eliminar = getMovimiento(id);
         movimientos.remove(eliminar);
-        eliminar.getCuentaBanco().getMovimientos().remove(eliminar);
         if (eliminar.getTipo() == TipoMovimiento.COBRO) {
             eliminar.getCliente().getMovimientos().remove(eliminar);
         } else {
@@ -62,20 +61,19 @@ public class MovimientoList implements MovimientoDAO {
         }
         nuevo.setId(id);
         movimientos.add(nuevo);
-        nuevo.getCuentaBanco().getMovimientos().add(nuevo);
         if (nuevo.getTipo() == TipoMovimiento.COBRO) {
             nuevo.getCliente().getMovimientos().add(nuevo);
         } else {
             nuevo.getProveedor().getMovimientos().add(nuevo);
         }
-        
+
         return nuevo;
 
     }
 
     @Override
     public void modificarMovimiento(Movimiento modificar) {
-         int pos = movimientos.indexOf(modificar);
+        int pos = movimientos.indexOf(modificar);
         if (pos != -1) {
             movimientos.set(pos, modificar);
         }

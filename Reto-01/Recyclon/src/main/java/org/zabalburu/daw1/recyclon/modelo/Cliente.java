@@ -26,4 +26,14 @@ public class Cliente extends Empresa {
     private Double limiteCredito;
     private List<Movimiento> movimientos;
     private EstadoCliente estado;
+
+    public Cliente(Integer id, Integer cif, String nombre, String email, String telefono, String codigoPostal, String ciudad, String provincia, String logo, Date fechaAlta, Double limiteCredito, List<Movimiento> movimientos, EstadoCliente estado) {
+        super(id, cif, nombre, email, telefono, codigoPostal, ciudad, provincia, logo);
+        this.fechaAlta = fechaAlta;
+        this.limiteCredito = limiteCredito;
+        this.movimientos = movimientos;
+        this.estado = estado;
+    }
+    
+    
 }

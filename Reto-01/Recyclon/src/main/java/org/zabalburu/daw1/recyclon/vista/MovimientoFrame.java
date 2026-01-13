@@ -4,10 +4,10 @@
  */
 package org.zabalburu.daw1.recyclon.vista;
 
-import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
@@ -65,9 +65,7 @@ public class MovimientoFrame extends JFrame {
         super();
         this.setTitle("Recyclon - Admin");
         this.setSize(dmVentana);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        this.setUndecorated(true);
 
         ///////////CabeCera///////////
         lblTitulo.setFont(Config.FUENTE_TITULO);
@@ -76,36 +74,36 @@ public class MovimientoFrame extends JFrame {
         pnlCabecera.add(lblTitulo);
         pnlCabecera.setBorder(new EmptyBorder(10, 20, 10, 20));
 
-        vctTitulos.add("Nombre");
-        vctTitulos.add("CIF");
-        vctTitulos.add("Telefono");
-        vctTitulos.add("Tipo de Movimiento");
+        vctTitulos.add("ID");
+        vctTitulos.add("Descripcion");
+        vctTitulos.add("Tipo");
+        vctTitulos.add("Monto");
         vctTitulos.add("Fecha");
-        vctTitulos.add("Estado");
+        vctTitulos.add("Empresa");
 
         this.servicio = new RecyclonServicio();
         this.usuarioLogeado = usuario;
-        
+
         ///
         ///////////////////bOTONES
-        btnNuevo.setIcon(Config.cargarIcono("nuevo.png", 30, 30));;
+        btnNuevo.setIcon(Config.cargarIcono("nuevo.png", 30, 30));
         btnEditar.setIcon(Config.cargarIcono("editar.png", 30, 30));
         btnEliminar.setIcon(Config.cargarIcono("eliminar.png", 30, 30));
         btnSalir.setIcon(Config.cargarIcono("salir.png", 30, 30));
         btnSalir.setBackground(Config.COLOR_BOTON_SALIR);
         btnSalir.addActionListener(e -> {
-            new MenuFrame().setVisible(true);
+            new MenuFrame(usuario).setVisible(true);
             this.dispose();
         });
-        
+
         /////////////pANEL INFERIOR
         pnlInferior.add(btnNuevo);
         pnlInferior.add(btnEditar);
         pnlInferior.add(btnEliminar);
         pnlInferior.add(btnSalir);
-        
+
         //DATOS
-        pnlDatos.add(jspDatos,BorderLayout.CENTER);
+        pnlDatos.add(jspDatos, BorderLayout.CENTER);
 
         this.add(pnlCabecera, BorderLayout.NORTH);
         this.add(pnlDatos, BorderLayout.CENTER);
@@ -113,8 +111,7 @@ public class MovimientoFrame extends JFrame {
         cargarTabla();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        
-      
+
     }
 
     private void cargarTabla() {
@@ -139,29 +136,21 @@ public class MovimientoFrame extends JFrame {
 
     private void cargarMovimientos() {
         List<Movimiento> movimientos = servicio.getMovimientos();
+        Vector<Vector<String>> vctDatos = new Vector<>();
         for (Movimiento m : movimientos) {
             Vector<String> vctFila = new Vector<>();
             vctFila.add(String.valueOf(m.getId()));
             vctFila.add((m.getDescripcion()));
             vctFila.add(String.valueOf(m.getTipo().toString()));
-            if (m.getTipo() != m.getTipo().COBRO) {
-                vctFila.add(String.valueOf(m.getCliente()));
-            } else {
-                vctFila.add(String.valueOf(m.getProveedor()));
-            }
             vctFila.add(String.valueOf(m.getMonto().toString()));
-            vctFila.add(String.valueOf(m.getFecha().toString()));
+            vctFila.add(String.valueOf(m.getFecha().toString().formatted(DateFormat.SHORT)));
+            vctFila.add(m.getCliente() != null
+                    ? m.getCliente().getNombre()
+                    : m.getProveedor().getNombre());
             vctDatos.add(vctFila);
-            DefaultTableModel dtm = (DefaultTableModel) tblDatos.getModel();
-            dtm.setDataVector(vctDatos, vctTitulos);
-
         }
-
-    }
-
-    public static void main(String[] args) {
-        FlatGradiantoNatureGreenIJTheme.setup();
-        new MovimientoFrame(null);
+        DefaultTableModel dtm = new DefaultTableModel(vctDatos, vctTitulos);
+        tblDatos.setModel(dtm);
     }
 
 }

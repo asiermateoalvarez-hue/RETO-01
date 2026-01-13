@@ -55,24 +55,24 @@
 
             // ======= Panel Central =======
             btnCliente.addActionListener(e -> {
-                /*new ClienteFrame().setVisible(true);
-                this.dispose();*/
+                new ClientesFrame(usuario).setVisible(true);
+                this.dispose();
             });
             btnCliente.setPreferredSize(new Dimension(150, 80));
             btnCliente.setIcon(Config.cargarIcono("cliente.png", 30, 30));
             pnlCentral.add(btnCliente);
 
             btnProveedor.addActionListener(e -> {
-                /*new ProveedorFrame().setVisible(true);
-                this.dispose();*/
+                new ProveedorFrame(usuario).setVisible(true);
+                this.dispose();
             });
             btnProveedor.setPreferredSize(new Dimension(150, 80));
             btnProveedor.setIcon(Config.cargarIcono("proveedor.png", 30, 30));
             pnlCentral.add(btnProveedor);
 
             btnMovimiento.addActionListener(e -> {
-                /*new MovimientoFrame().setVisible(true);
-                this.dispose();*/
+                new MovimientoFrame(usuario).setVisible(true);
+                this.dispose();
             });
             btnMovimiento.setPreferredSize(new Dimension(150, 80));
             btnMovimiento.setIcon(Config.cargarIcono("movimiento.png", 30, 30));

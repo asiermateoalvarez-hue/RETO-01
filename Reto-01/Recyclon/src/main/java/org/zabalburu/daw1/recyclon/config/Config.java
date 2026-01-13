@@ -20,7 +20,7 @@ public class Config {
     public static final int LOGIN_HEIGHT = 300;
     public static final int MENU_WIDTH = 500;
     public static final int MENU_HEIGHT = 400;
-    public static final int ADMIN_WIDTH = 1000;
+    public static final int ADMIN_WIDTH = 800;
     public static final int ADMIN_HEIGHT = 600;
     public static final int DIALOG_WIDTH = 500;
     public static final int DIALOG_HEIGHT = 400;

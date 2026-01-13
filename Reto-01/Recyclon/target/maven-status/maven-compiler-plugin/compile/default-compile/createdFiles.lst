@@ -1,4 +1,5 @@
 org\zabalburu\daw1\recyclon\dao\ProveedorList.class
+org\zabalburu\daw1\recyclon\vista\MovimientoFrame.class
 org\zabalburu\daw1\recyclon\dao\ProveedorDAO.class
 org\zabalburu\daw1\gestionempleados\dao\UsuarioDAOImpl.class
 org\zabalburu\daw1\recyclon\modelo\Movimiento.class

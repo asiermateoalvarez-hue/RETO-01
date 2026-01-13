@@ -31,7 +31,6 @@ public class Movimiento {
     private EstadoMovimiento estado;
     private Cliente cliente;
     private Proveedor proveedor;
-    private Cuenta cuentaBanco;
 
     /**
      * Valida que el movimiento tenga la estructura correcta según su tipo.

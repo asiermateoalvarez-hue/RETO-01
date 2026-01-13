@@ -1,32 +1,3 @@
-<<<<<<< HEAD
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\config\Config.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\controlador\LoginControlador.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\ClienteDAO.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\ClienteList.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\MovimientoDAO.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\MovimientoList.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\ProveedorDAO.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\ProveedorList.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\UsuarioDAOImpl.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\modelo\Cliente.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\modelo\Empresa.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\modelo\Movimiento.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\modelo\Proveedor.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\modelo\Usuario.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\Recyclon.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\servicio\RecyclonServicio.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\EstadoCliente.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\EstadoMovimiento.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\EstadoProveedor.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\PasswordManager.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\TipoMovimiento.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\util\TipoProveedor.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\ClientesFrame.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\LoginFrame.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\MenuFrame.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\MovimientoFrame.java
-C:\Users\Duque\Desktop\Reto\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\ProveedorFrame.java
-=======
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\config\Config.java
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\controlador\LoginControlador.java
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\dao\ClienteDAO.java
@@ -54,4 +25,3 @@ D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\Logi
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\MenuFrame.java
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\MovimientoFrame.java
 D:\RETO-01\Reto-01\Recyclon\src\main\java\org\zabalburu\daw1\recyclon\vista\ProveedorFrame.java
->>>>>>> featureAaron

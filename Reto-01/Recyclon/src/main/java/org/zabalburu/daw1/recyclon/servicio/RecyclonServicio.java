@@ -40,45 +40,46 @@ public class RecyclonServicio {
     private UsuarioDAOImpl usuarioDao = new UsuarioDAOImpl();
 
     // ==================== CREACION DE DATOS ====================
+    // ==================== CREACION DE DATOS ====================
     public RecyclonServicio() {
         // ==================== USUARIOS ====================
         registrarUsuariosPrueba(new Usuario(1, "David", "Duque", "DavidDuque", "david"), "david");
         registrarUsuariosPrueba(new Usuario(2, "Asier", "Mateo", "AsierMateo", "asier"), "asier");
         registrarUsuariosPrueba(new Usuario(3, "Aaron", "Marrero", "AaronMarrero", "aaron"), "aaron");
         registrarUsuariosPrueba(new Usuario(4, "Diego", "Castillo", "DiegoCastillo", "diego"), "diego");
-        // ==================== CLIENTES (10) ====================
-        // Nota: Los meses en GregorianCalendar van de 0 (Enero) a 11 (Diciembre)
-        Cliente c1 = new Cliente(1, 12345678, "Tech Solutions S.L.", "contacto@techsolutions.es", "944123456", "48001", "Bilbao", "Bizkaia", "logo_tech.png",
-                new GregorianCalendar(2023, 0, 15).getTime(), 5000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c2 = new Cliente(2, 87654321, "Restaurante La Cuchara", "reservas@lacuchara.com", "911223344", "28001", "Madrid", "Madrid", "logo_cuchara.png",
-                new GregorianCalendar(2023, 2, 10).getTime(), 2000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        // ==================== CLIENTES (10 - Empresas que compran muebles) ====================
+        Cliente c1 = new Cliente(1, 12345678, "TechNova Startups", "compras@technova.es", "944112233", "48001", "Bilbao", "Bizkaia", "logo_tech.png",
+                new GregorianCalendar(2023, 0, 10).getTime(), 15000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c3 = new Cliente(3, 11223344, "Construcciones Norte", "obras@cnorte.com", "981556677", "15001", "A Coruña", "A Coruña", "logo_cons.png",
-                new GregorianCalendar(2022, 5, 20).getTime(), 15000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c2 = new Cliente(2, 87654321, "Bufete Abogados Martínez", "admin@martinezlegal.com", "911223344", "28001", "Madrid", "Madrid", "logo_bufete.png",
+                new GregorianCalendar(2023, 1, 15).getTime(), 5000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c4 = new Cliente(4, 99887766, "Gimnasio PowerFit", "info@powerfit.es", "933445566", "08005", "Barcelona", "Barcelona", "logo_gym.png",
-                new GregorianCalendar(2023, 8, 1).getTime(), 1000.0, new ArrayList<>(), EstadoCliente.SUSPENDIDO);
+        Cliente c3 = new Cliente(3, 11223344, "Coworking Espacio Vivo", "hola@espaciovivo.com", "933445566", "08005", "Barcelona", "Barcelona", "logo_cowork.png",
+                new GregorianCalendar(2022, 5, 20).getTime(), 8000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c5 = new Cliente(5, 55667788, "Ayuntamiento de Basauri", "info@basauri.eus", "944666333", "48970", "Basauri", "Bizkaia", "logo_ayto.png",
-                new GregorianCalendar(2021, 0, 1).getTime(), 20000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c4 = new Cliente(4, 99887766, "Call Center Conecta", "infraestructura@conecta.es", "954112233", "41001", "Sevilla", "Sevilla", "logo_call.png",
+                new GregorianCalendar(2023, 8, 1).getTime(), 20000.0, new ArrayList<>(), EstadoCliente.SUSPENDIDO);
 
-        Cliente c6 = new Cliente(6, 44332211, "Librería Cervantes", "pedidos@cervantes.com", "954112233", "41001", "Sevilla", "Sevilla", "logo_lib.png",
-                new GregorianCalendar(2023, 10, 5).getTime(), 500.0, new ArrayList<>(), EstadoCliente.INACTIVO);
+        Cliente c5 = new Cliente(5, 55667788, "Academia Formación Futuro", "info@futuro.eus", "945666333", "01001", "Vitoria", "Álava", "logo_acad.png",
+                new GregorianCalendar(2021, 10, 5).getTime(), 3000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c7 = new Cliente(7, 66778899, "Talleres Mecánicos Paco", "taller@paco.com", "963221100", "46001", "Valencia", "Valencia", "logo_taller.png",
-                new GregorianCalendar(2022, 3, 12).getTime(), 3000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c6 = new Cliente(6, 44332211, "Clínica Dental Sonrisas", "recepcion@sonrisas.com", "963221100", "46001", "Valencia", "Valencia", "logo_dent.png",
+                new GregorianCalendar(2023, 3, 12).getTime(), 2500.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c8 = new Cliente(8, 22334455, "Hotel Miramar", "recepcion@miramar.com", "952001122", "29001", "Málaga", "Málaga", "logo_hotel.png",
-                new GregorianCalendar(2023, 6, 25).getTime(), 10000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c7 = new Cliente(7, 66778899, "Arquitectos Verticales", "estudio@vertical.com", "944888999", "48991", "Getxo", "Bizkaia", "logo_arq.png",
+                new GregorianCalendar(2022, 2, 28).getTime(), 6000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c9 = new Cliente(9, 77889900, "Panadería El Trigo", "pan@eltrigo.es", "947112233", "09001", "Burgos", "Burgos", "logo_pan.png",
-                new GregorianCalendar(2023, 1, 14).getTime(), 1500.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c8 = new Cliente(8, 22334455, "Hotel Business Center", "eventos@hotelbc.com", "952001122", "29001", "Málaga", "Málaga", "logo_hotel.png",
+                new GregorianCalendar(2023, 6, 25).getTime(), 12000.0, new ArrayList<>(), EstadoCliente.INACTIVO);
 
-        Cliente c10 = new Cliente(10, 33445566, "Academia de Idiomas Speak", "hello@speak.com", "942334455", "39001", "Santander", "Cantabria", "logo_acad.png",
-                new GregorianCalendar(2023, 9, 10).getTime(), 1200.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+        Cliente c9 = new Cliente(9, 77889900, "Consultoría Estratégica", "admin@consultoria.es", "910001122", "28050", "Madrid", "Madrid", "logo_consul.png",
+                new GregorianCalendar(2023, 9, 10).getTime(), 4000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        // Añadir clientes al DAO
+        Cliente c10 = new Cliente(10, 33445566, "Biblioteca Municipal", "compras@biblio.org", "942334455", "39001", "Santander", "Cantabria", "logo_biblio.png",
+                new GregorianCalendar(2020, 0, 15).getTime(), 10000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
+
+        // Añadir clientes
         addCliente(c1);
         addCliente(c2);
         addCliente(c3);
@@ -90,38 +91,38 @@ public class RecyclonServicio {
         addCliente(c9);
         addCliente(c10);
 
-        // ==================== PROVEEDORES (10) ====================
-        Proveedor p1 = new Proveedor(11, 90011122, "Iberdrola Clientes", "facturas@iberdrola.es", "900225235", "48008", "Bilbao", "Bizkaia", "logo_iber.png",
-                new GregorianCalendar(2020, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Suministros", "ES980000111122223333", 30, "Juan Pérez", "Pago luz");
+        // ==================== PROVEEDORES (10 - Fabricantes y servicios) ====================
+        Proveedor p1 = new Proveedor(11, 90011122, "Sillas Ergonómicas S.L.", "pedidos@sillas.com", "961234567", "46020", "Valencia", "Valencia", "logo_silla.png",
+                new GregorianCalendar(2020, 0, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Mobiliario", "ES980000111122223333", 30, "Juan Sillería", "Stock Sillas");
 
-        Proveedor p2 = new Proveedor(12, 90033344, "Movistar Empresas", "pymes@movistar.es", "1004", "28050", "Madrid", "Madrid", "logo_mov.png",
-                new GregorianCalendar(2020, 2, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Telecomunicaciones", "ES120000111122223333", 30, "María López", "Fibra y Móvil");
+        Proveedor p2 = new Proveedor(12, 90033344, "Maderas del Norte", "almacen@maderas.es", "943112233", "20009", "San Sebastián", "Gipuzkoa", "logo_mad.png",
+                new GregorianCalendar(2019, 5, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Materia Prima", "ES120000111122223333", 45, "Mikel Roble", "Tableros mesa");
 
-        Proveedor p3 = new Proveedor(13, 80055566, "Ofiprix S.L.", "ventas@ofiprix.com", "934000000", "08040", "Barcelona", "Barcelona", "logo_ofi.png",
-                new GregorianCalendar(2022, 4, 10).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Mobiliario", "ES450000111122223333", 15, "Carlos Ruiz", "Compra sillas");
+        Proveedor p3 = new Proveedor(13, 80055566, "Lámparas y Diseño", "ventas@lyd.com", "934000000", "08040", "Barcelona", "Barcelona", "logo_lamp.png",
+                new GregorianCalendar(2021, 2, 20).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Iluminación", "ES450000111122223333", 15, "Carla Luz", "Lámparas despacho");
 
-        Proveedor p4 = new Proveedor(14, 70088899, "Wurth España", "contacto@wurth.es", "900100200", "08184", "Palau", "Barcelona", "logo_wurth.png",
-                new GregorianCalendar(2021, 6, 20).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Herramientas", "ES780000111122223333", 45, "Ana García", "Tornillería");
+        Proveedor p4 = new Proveedor(14, 70088899, "Transportes Rápidos", "logistica@transportes.es", "900100200", "28030", "Madrid", "Madrid", "logo_trans.png",
+                new GregorianCalendar(2020, 8, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Logística", "ES780000111122223333", 30, "Paco Camión", "Envíos clientes");
 
-        Proveedor p5 = new Proveedor(15, 60011100, "Limpiezas Brillante", "info@brillante.com", "944555666", "48010", "Bilbao", "Bizkaia", "logo_limp.png",
-                new GregorianCalendar(2023, 0, 5).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Servicios", "ES990000111122223333", 10, "Pedro Sanz", "Limpieza mensual");
+        Proveedor p5 = new Proveedor(15, 60011100, "Iberdrola Empresas", "facturas@iberdrola.es", "900225235", "48008", "Bilbao", "Bizkaia", "logo_iber.png",
+                new GregorianCalendar(2018, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Suministros", "ES990000111122223333", 10, "Att. Cliente", "Luz almacén");
 
-        Proveedor p6 = new Proveedor(16, 50022233, "Repsol Directo", "tarjetas@repsol.com", "901100100", "28045", "Madrid", "Madrid", "logo_rep.png",
-                new GregorianCalendar(2021, 11, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Combustible", "ES110000111122223333", 30, "Laura Gil", "Gasolina furgonetas");
+        Proveedor p6 = new Proveedor(16, 50022233, "Herrajes Industriales", "pedidos@herrajes.com", "976112233", "50001", "Zaragoza", "Zaragoza", "logo_herr.png",
+                new GregorianCalendar(2022, 3, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Componentes", "ES110000111122223333", 60, "Ana Tuercas", "Tornillería");
 
-        Proveedor p7 = new Proveedor(17, 40044455, "Amazon Business", "business@amazon.es", "900000000", "28223", "Pozuelo", "Madrid", "logo_amz.png",
-                new GregorianCalendar(2023, 2, 1).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Varios", "ES330000111122223333", 0, "Soporte Web", "Material vario");
+        Proveedor p7 = new Proveedor(17, 40044455, "Inmobiliaria Industrial", "alquileres@inmo.com", "944555666", "48010", "Bilbao", "Bizkaia", "logo_inmo.png",
+                new GregorianCalendar(2018, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Alquiler", "ES330000111122223333", 5, "Luis Casero", "Alquiler Nave");
 
-        Proveedor p8 = new Proveedor(18, 30066677, "Gestoría Martínez", "martinez@gestores.com", "944111222", "48005", "Bilbao", "Bizkaia", "logo_gest.png",
-                new GregorianCalendar(2020, 5, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Legal", "ES550000111122223333", 15, "Luis Martínez", "Nóminas");
+        Proveedor p8 = new Proveedor(18, 30066677, "Oficina Total Mayorista", "b2b@oficinatotal.com", "911888999", "28900", "Getafe", "Madrid", "logo_ofi.png",
+                new GregorianCalendar(2023, 1, 5).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Complementos", "ES550000111122223333", 0, "Sara Stock", "Pizarras/Archivadores");
 
-        Proveedor p9 = new Proveedor(19, 20088899, "Seguros Mapfre", "clientes@mapfre.com", "918000000", "28222", "Majadahonda", "Madrid", "logo_map.png",
-                new GregorianCalendar(2020, 0, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Seguros", "ES770000111122223333", 365, "Elena Torres", "Seguro local");
+        Proveedor p9 = new Proveedor(19, 20088899, "Limpiezas Brillo", "servicios@brillo.com", "944222333", "48901", "Barakaldo", "Bizkaia", "logo_limp.png",
+                new GregorianCalendar(2021, 6, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Servicios", "ES770000111122223333", 30, "Elena Limpia", "Limpieza exposición");
 
-        Proveedor p10 = new Proveedor(20, 10099900, "Makro Mayorista", "clientes@makro.es", "900111000", "48950", "Erandio", "Bizkaia", "logo_makro.png",
-                new GregorianCalendar(2022, 8, 25).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.INACTIVO, "Alimentación", "ES220000111122223333", 0, "Tienda Física", "Bebidas evento");
+        Proveedor p10 = new Proveedor(20, 10099900, "Movistar Negocios", "pymes@movistar.es", "1004", "28050", "Madrid", "Madrid", "logo_mov.png",
+                new GregorianCalendar(2019, 4, 20).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Telecomunicaciones", "ES220000111122223333", 30, "Soporte", "Fibra y Móvil");
 
-        // Añadir proveedores al DAO
+        // Añadir proveedores
         addProveedor(p1);
         addProveedor(p2);
         addProveedor(p3);
@@ -133,49 +134,46 @@ public class RecyclonServicio {
         addProveedor(p9);
         addProveedor(p10);
 
-        // ==================== MOVIMIENTOS (10) ====================
-        // Cobros (Cliente != null, Proveedor == null)
-        // Gastos (Cliente == null, Proveedor != null)
-        // Mov 1: Cobro a Tech Solutions
-        addMovimiento(new Movimiento(1, new GregorianCalendar(2023, 10, 1).getTime(), 1250.50,
-                "Servicio de consultoría Octubre", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c1, null));
+        // ==================== MOVIMIENTOS (10 - Compras y Ventas de muebles) ====================
+        // Mov 1: Venta a TechNova (Cobro)
+        addMovimiento(new Movimiento(1, new GregorianCalendar(2023, 10, 2).getTime(), 4500.00,
+                "Venta 20 sillas ergonómicas modelo 'Tech'", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c1, null));
 
-        // Mov 2: Gasto de Iberdrola
-        addMovimiento(new Movimiento(2, new GregorianCalendar(2023, 10, 5).getTime(), 250.00,
-                "Factura Electricidad Noviembre", TipoMovimiento.GASTO, EstadoMovimiento.PENDIENTE, null, p1));
+        // Mov 2: Compra a Sillas Ergonómicas S.L. (Gasto)
+        addMovimiento(new Movimiento(2, new GregorianCalendar(2023, 10, 5).getTime(), 2100.00,
+                "Compra stock 30 sillas base", TipoMovimiento.GASTO, EstadoMovimiento.PENDIENTE, null, p1));
 
-        // Mov 3: Cobro a Restaurante La Cuchara
-        addMovimiento(new Movimiento(3, new GregorianCalendar(2023, 10, 10).getTime(), 450.00,
-                "Recogida de residuos orgánicos", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c2, null));
+        // Mov 3: Venta a Bufete Martínez (Cobro)
+        addMovimiento(new Movimiento(3, new GregorianCalendar(2023, 10, 8).getTime(), 3200.50,
+                "Equipamiento sala de juntas (Mesa Roble)", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c2, null));
 
-        // Mov 4: Gasto de Movistar
-        addMovimiento(new Movimiento(4, new GregorianCalendar(2023, 10, 12).getTime(), 65.90,
-                "Internet y Fijo Oficina", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p2));
+        // Mov 4: Gasto Luz Almacén (Gasto)
+        addMovimiento(new Movimiento(4, new GregorianCalendar(2023, 10, 10).getTime(), 340.20,
+                "Factura luz almacén Octubre", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p5));
 
-        // Mov 5: Cobro a Ayuntamiento de Basauri
-        addMovimiento(new Movimiento(5, new GregorianCalendar(2023, 10, 15).getTime(), 5000.00,
-                "Contrato anual gestión papel", TipoMovimiento.COBRO, EstadoMovimiento.PENDIENTE, c5, null));
+        // Mov 5: Venta a Coworking Espacio Vivo (Cobro)
+        addMovimiento(new Movimiento(5, new GregorianCalendar(2023, 10, 12).getTime(), 1250.00,
+                "10 Mesas compartidas blancas", TipoMovimiento.COBRO, EstadoMovimiento.PENDIENTE, c3, null));
 
-        // Mov 6: Gasto de Repsol
-        addMovimiento(new Movimiento(6, new GregorianCalendar(2023, 10, 18).getTime(), 120.50,
-                "Gasolina furgoneta reparto", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p6));
+        // Mov 6: Compra Transporte (Gasto)
+        addMovimiento(new Movimiento(6, new GregorianCalendar(2023, 10, 13).getTime(), 180.00,
+                "Portes entrega pedido Bufete Martínez", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p4));
 
-        // Mov 7: Cobro a Hotel Miramar
-        addMovimiento(new Movimiento(7, new GregorianCalendar(2023, 10, 20).getTime(), 2100.00,
-                "Gestión residuos hostelería", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c8, null));
+        // Mov 7: Compra Maderas (Gasto)
+        addMovimiento(new Movimiento(7, new GregorianCalendar(2023, 10, 15).getTime(), 1500.00,
+                "Compra tableros haya para fabricación", TipoMovimiento.GASTO, EstadoMovimiento.PENDIENTE, null, p2));
 
-        // Mov 8: Gasto de Ofiprix
-        addMovimiento(new Movimiento(8, new GregorianCalendar(2023, 10, 22).getTime(), 350.00,
-                "Compra silla ergonómica", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p3));
+        // Mov 8: Venta a Clínica Dental (Cobro)
+        addMovimiento(new Movimiento(8, new GregorianCalendar(2023, 10, 18).getTime(), 890.00,
+                "Mueble recepción a medida y sillas espera", TipoMovimiento.COBRO, EstadoMovimiento.PAGADO, c6, null));
 
-        // Mov 9: Cobro a Talleres Paco
-        addMovimiento(new Movimiento(9, new GregorianCalendar(2023, 10, 25).getTime(), 800.00,
-                "Reciclaje aceites industriales", TipoMovimiento.COBRO, EstadoMovimiento.PENDIENTE, c7, null));
+        // Mov 9: Gasto Alquiler Nave (Gasto)
+        addMovimiento(new Movimiento(9, new GregorianCalendar(2023, 10, 1).getTime(), 1200.00,
+                "Alquiler Nave Industrial Octubre", TipoMovimiento.GASTO, EstadoMovimiento.PAGADO, null, p7));
 
-        // Mov 10: Gasto de Gestoría
-        addMovimiento(new Movimiento(10, new GregorianCalendar(2023, 10, 30).getTime(), 150.00,
-                "Honorarios gestoría Trimestre 3", TipoMovimiento.GASTO, EstadoMovimiento.PENDIENTE, null, p8));
-
+        // Mov 10: Venta a Academia Futuro (Cobro)
+        addMovimiento(new Movimiento(10, new GregorianCalendar(2023, 10, 25).getTime(), 2800.00,
+                "Renovación pupitres aula 3", TipoMovimiento.COBRO, EstadoMovimiento.PENDIENTE, c5, null));
     }
 
     // ==================== MÉTODOS PROVEEDOR ====================

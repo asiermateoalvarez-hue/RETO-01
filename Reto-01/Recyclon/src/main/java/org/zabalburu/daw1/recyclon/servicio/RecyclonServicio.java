@@ -35,18 +35,10 @@ public class RecyclonServicio {
 
     // ==================== USUARIOS ====================
     public RecyclonServicio() {
-        Usuario user = new Usuario(1, "David", "Duque", "DavidDuque", "david");
-        nuevoUsuario(user, "david");
-        
-        user = new Usuario(2, "Asier", "Mateo", "AsierMateo", "asier");
-        nuevoUsuario(user, "asier");
-        
-        user = new Usuario(3, "Aaron", "Marrero", "AaronMarrero", "aaron");
-        nuevoUsuario(user, "aaron");
-        
-        user = new Usuario(4, "Diego", "Castillo", "DiegoCastillo", "diego");
-        nuevoUsuario(user, "diego");
-
+        registrarUsuariosPrueba(new Usuario(1, "David", "Duque", "DavidDuque", "david"), "david");
+        registrarUsuariosPrueba(new Usuario(2, "Asier", "Mateo", "AsierMateo", "asier"), "asier");
+        registrarUsuariosPrueba(new Usuario(3, "Aaron", "Marrero", "AaronMarrero", "aaron"), "aaron");
+        registrarUsuariosPrueba(new Usuario(4, "Diego", "Castillo", "DiegoCastillo", "diego"), "diego");
     }
 
     // ==================== MÉTODOS PROVEEDOR ====================
@@ -315,6 +307,14 @@ public class RecyclonServicio {
         String hash = PasswordManager.getHash(password);
         nuevo.setHash(hash);
         return usuarioDao.nuevoUsuario(nuevo);
+    }
+
+    private void registrarUsuariosPrueba(Usuario usuario, String password) {
+        try {
+            nuevoUsuario(usuario, password);
+        } catch (Exception e) {
+            System.out.println("Info: El usuario " + usuario.getNombre() + " ya esta registrado.");
+        }
     }
 
 }

@@ -309,9 +309,9 @@ public class RecyclonServicio {
         if (password == null || password.isEmpty()) {
             throw new IllegalArgumentException("La contraseña es obligatoria");
         }
-        if (usuarioDao.getUsuario(nuevo.getUsuario()) != null) {
+        /*if (usuarioDao.getUsuario(nuevo.getUsuario()) != null) {
             throw new IllegalArgumentException("El nombre de usuario ya existe");
-        }
+        }*/
         String hash = PasswordManager.getHash(password);
         nuevo.setHash(hash);
         return usuarioDao.nuevoUsuario(nuevo);

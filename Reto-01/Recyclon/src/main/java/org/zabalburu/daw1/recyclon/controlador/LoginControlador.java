@@ -7,8 +7,8 @@ package org.zabalburu.daw1.recyclon.controlador;
 import javax.swing.JOptionPane;
 import org.zabalburu.daw1.gestionempleados.modelo.Usuario;
 import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
-import org.zabalburu.daw1.recyclon.vista.AdminFrame;
 import org.zabalburu.daw1.recyclon.vista.LoginFrame;
+import org.zabalburu.daw1.recyclon.vista.MenuFrame;
 
 /**
  *
@@ -39,7 +39,7 @@ public class LoginControlador {
         Usuario u = servicio.login(usuario, password);
 
         if (u != null) {
-            new AdminFrame(u).setVisible(true);
+            new MenuFrame(u).setVisible(true);
             loginFrame.dispose();
         } else {
             JOptionPane.showMessageDialog(loginFrame, "Usuario / Password Erroneo",

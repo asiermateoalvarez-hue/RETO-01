@@ -43,16 +43,10 @@ public class Movimiento {
      */
     public boolean esValido() {
         if (tipo == TipoMovimiento.COBRO) {
-            /*
-            Si el tipo es un COBRO significa que debe ser un cliente
-            y NO un proveedor
-             */
+           
             return cliente != null && proveedor == null;
         } else if (tipo == TipoMovimiento.GASTO) {
-            /*
-            Si el tipo es un GASTO significa que debe ser un proveedor
-            y NO un Cliente
-             */
+          
             return proveedor != null && cliente == null;
         }
         return false;

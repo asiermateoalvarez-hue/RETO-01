@@ -32,7 +32,7 @@ import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
  */
 public class MovimientoFrame extends JFrame {
 
-    private RecyclonServicio servicio;
+    private static RecyclonServicio servicio;
     private Usuario usuarioLogeado;
     private List<Proveedor> proveedores = new ArrayList<>();
     private List<Cliente> clientes = new ArrayList<>();
@@ -52,7 +52,12 @@ public class MovimientoFrame extends JFrame {
     private JButton btnEditar = new JButton("Editar");
     private JButton btnEliminar = new JButton("Eliminar");
 
+    private JButton btnCobros = new JButton("COBROS");
+    private JButton btnGastos = new JButton("Gastos");
+
     private JPanel pnlCabecera = new JPanel(new FlowLayout(FlowLayout.LEFT));
+    private JPanel pnlBtnCobroyGasto = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
     private JPanel pnlInferior = new JPanel(new FlowLayout());
     private JPanel pnlDatos = new JPanel(new BorderLayout());
 
@@ -60,6 +65,10 @@ public class MovimientoFrame extends JFrame {
     private Vector<Vector<String>> vctDatos = new Vector<>();
 
     int pos = 0;
+
+    private static final int COBROS = 1;
+    private static final int GASTOS = 2;
+    private int tipoMovimiento = COBROS;
 
     public MovimientoFrame(Usuario usuario) {
         super();
@@ -72,6 +81,7 @@ public class MovimientoFrame extends JFrame {
         lblTitulo.setForeground(Config.COLOR_TEXTO);
         pnlCabecera.add(lblLogo);
         pnlCabecera.add(lblTitulo);
+
         pnlCabecera.setBorder(new EmptyBorder(10, 20, 10, 20));
 
         vctTitulos.add("ID");
@@ -105,6 +115,24 @@ public class MovimientoFrame extends JFrame {
         //DATOS
         pnlDatos.add(jspDatos, BorderLayout.CENTER);
 
+        pnlBtnCobroyGasto.setBorder(new EmptyBorder(10, 0, 10, 15));
+
+        btnCobros.addActionListener(e -> {
+            tipoMovimiento = COBROS;
+            cargarTabla();
+            actualizarBotones();
+        });
+        pnlBtnCobroyGasto.add(btnCobros);
+
+        btnGastos.addActionListener(e -> {
+            tipoMovimiento = GASTOS;
+            cargarTabla();
+            actualizarBotones();
+        });
+        pnlBtnCobroyGasto.add(btnGastos);
+
+        pnlDatos.add(pnlBtnCobroyGasto, BorderLayout.SOUTH);
+
         this.add(pnlCabecera, BorderLayout.NORTH);
         this.add(pnlDatos, BorderLayout.CENTER);
         this.add(pnlInferior, BorderLayout.SOUTH);
@@ -115,7 +143,13 @@ public class MovimientoFrame extends JFrame {
     }
 
     private void cargarTabla() {
-        cargarMovimientos();
+        if (tipoMovimiento == COBROS) {
+            
+            // Columnas: ID, Descripción, Monto, Fecha, Cliente
+        } else if (tipoMovimiento == GASTOS) {
+            // Mostrar solo movimientos con Proveedor
+            // Columnas: ID, Descripción, Monto, Fecha, Proveedor
+        }
     }
 
     public JTable getTblDatos() {
@@ -134,6 +168,10 @@ public class MovimientoFrame extends JFrame {
         return btnEliminar;
     }
 
+    public static void main(String[] args) {
+        new MovimientoFrame(null);
+    }
+
     private void cargarMovimientos() {
         List<Movimiento> movimientos = servicio.getMovimientos();
         Vector<Vector<String>> vctDatos = new Vector<>();
@@ -143,7 +181,10 @@ public class MovimientoFrame extends JFrame {
             vctFila.add((m.getDescripcion()));
             vctFila.add(String.valueOf(m.getTipo().toString()));
             vctFila.add(String.valueOf(m.getMonto().toString()));
-            vctFila.add(String.valueOf(m.getFecha().toString().formatted(DateFormat.SHORT)));
+
+            DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
+            vctFila.add(df.format(m.getFecha()));
+
             vctFila.add(m.getCliente() != null
                     ? m.getCliente().getNombre()
                     : m.getProveedor().getNombre());
@@ -151,6 +192,10 @@ public class MovimientoFrame extends JFrame {
         }
         DefaultTableModel dtm = new DefaultTableModel(vctDatos, vctTitulos);
         tblDatos.setModel(dtm);
+    }
+
+    private void actualizarBotones() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

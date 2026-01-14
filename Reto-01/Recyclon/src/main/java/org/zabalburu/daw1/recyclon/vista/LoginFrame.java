@@ -15,17 +15,22 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import org.zabalburu.daw1.gestionempleados.modelo.Usuario;
 import org.zabalburu.daw1.recyclon.config.Config;
+import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
 
 /**
  *
  * @author Aaron David
  */
 public class LoginFrame extends JFrame {
+    
+    private static RecyclonServicio servicio = new RecyclonServicio();
 
     private Dimension dmVentana = new Dimension(Config.LOGIN_WIDTH, Config.LOGIN_HEIGHT);
 
@@ -90,6 +95,7 @@ public class LoginFrame extends JFrame {
         btnEntrar.setForeground(Config.COLOR_TEXTO);
         btnEntrar.setIconTextGap(20);
         btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btnEntrar.addActionListener( e -> manejarLogin());
         pnlBotones.add(btnEntrar);
 
         btnSalir.setIcon(Config.cargarIcono("salir.png", 30, 30));
@@ -135,5 +141,24 @@ public class LoginFrame extends JFrame {
 
     public JButton getBtnEntrar() {
         return btnEntrar;
+    }
+
+    private void manejarLogin() {
+        String usuario = txtUsuario.getText();
+        String password = new String(pwdPassword.getPassword());
+        if (usuario.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "¡No pueden haber campos vacios!",
+                    "Error", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Usuario u = servicio.login(usuario, password);
+
+        if (u != null) {
+            new MenuFrame(u).setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario / Password Erroneo",
+                    "Acceso Denegado", JOptionPane.ERROR_MESSAGE);
+        }    
     }
 }

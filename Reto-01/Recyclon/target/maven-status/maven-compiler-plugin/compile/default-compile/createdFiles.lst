@@ -15,7 +15,6 @@ org\zabalburu\daw1\recyclon\util\TipoMovimiento.class
 org\zabalburu\daw1\recyclon\Recyclon.class
 org\zabalburu\daw1\recyclon\util\PasswordManager.class
 org\zabalburu\daw1\recyclon\config\Config.class
-org\zabalburu\daw1\recyclon\controlador\LoginControlador.class
 org\zabalburu\daw1\recyclon\vista\MenuFrame.class
 org\zabalburu\daw1\recyclon\vista\ClientesFrame.class
 org\zabalburu\daw1\recyclon\util\TipoProveedor.class

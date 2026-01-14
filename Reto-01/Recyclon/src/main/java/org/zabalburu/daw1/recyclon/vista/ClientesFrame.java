@@ -30,6 +30,7 @@ import javax.swing.border.EmptyBorder;
 import org.zabalburu.daw1.gestionempleados.modelo.Usuario;
 import org.zabalburu.daw1.recyclon.config.Config;
 import org.zabalburu.daw1.recyclon.modelo.Cliente;
+import org.zabalburu.daw1.recyclon.modelo.Proveedor;
 import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
 import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 
@@ -40,7 +41,7 @@ import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 public class ClientesFrame extends JFrame {
 
     //Usuario que se registra//////
-    private RecyclonServicio servicio;
+    private static RecyclonServicio servicio;
     private Usuario usuarioLogeado;
     private List<Cliente> clientes = new ArrayList<>();
 
@@ -76,9 +77,8 @@ public class ClientesFrame extends JFrame {
     JLabel lblProvincia = new JLabel("Provincia");
     JTextField txtProvincia = new JTextField();
 
-    JLabel lblCiudad = new JLabel("Municipio");
+    JLabel lblCiudad = new JLabel("Ciudad");
     JTextField txtCiudad = new JTextField();
-
 
     JButton btnAnterior = new JButton();
     JButton btnSiguiente = new JButton();
@@ -96,17 +96,14 @@ public class ClientesFrame extends JFrame {
     JPanel pnlBotones = new JPanel();
     private BoxLayout bx = new BoxLayout(pnlBotones, BoxLayout.X_AXIS);
 
-    Dimension dmVentana = new Dimension(850, 750);
-    JTabbedPane tb = new JTabbedPane();
+    Dimension dmVentana = new Dimension(Config.ADMIN_WIDTH, Config.ADMIN_HEIGHT);
 
     private int posicionActual = 0;
 
     //GridbBagConstra
     GridBagLayout grid1 = new GridBagLayout();
-    GridBagLayout grid2 = new GridBagLayout();
     GridBagConstraints gbc = new GridBagConstraints();
     JPanel pnlDatos = new JPanel(grid1);
-    JPanel pnlDatos2 = new JPanel(grid2);
 
     //*****Estados****////////
     private static final int ALTA = 1;
@@ -122,7 +119,7 @@ public class ClientesFrame extends JFrame {
         this.servicio = new RecyclonServicio();
         this.clientes = servicio.getClientes();
         if (!clientes.isEmpty()) {
-            mostrarCliente(0);
+            mostrar();
         }
 
         this.usuarioLogeado = usuario;
@@ -135,7 +132,7 @@ public class ClientesFrame extends JFrame {
         pnlCabecera.add(lblTitulo);
 
         //Datos
-        gbc.insets = new Insets(15, 15, 15, 15);
+        gbc.insets = new Insets(15, 0, 0, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
@@ -231,54 +228,18 @@ public class ClientesFrame extends JFrame {
         grid1.setConstraints(txtCiudad, gbc);
         pnlDatos.add(txtCiudad);
 
-        tb.addTab("Datos Personales", pnlDatos);
-        this.add(tb, BorderLayout.CENTER);
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 40;
-
-        gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(15, 15, 15, 15);
-        grid2.setConstraints(lblEstado, gbc);
-        pnlDatos2.add(lblEstado);
-
         gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 60;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid2.setConstraints(txtEstado, gbc);
-        pnlDatos2.add(txtEstado);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.weightx = 40;
+        gbc.gridy = 8;
         gbc.fill = GridBagConstraints.NONE;
-        grid2.setConstraints(lblProvincia, gbc);
-        pnlDatos2.add(lblProvincia);
+        grid1.setConstraints(lblEstado, gbc);
+        pnlDatos.add(lblEstado);
 
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.weightx = 60;
+        gbc.gridx = 2;
+        gbc.gridy = 8;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid2.setConstraints(txtProvincia, gbc);
-        pnlDatos2.add(txtProvincia);
-
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.weightx = 40;
-        gbc.fill = GridBagConstraints.NONE;
-        grid2.setConstraints(lblTelefono, gbc);
-        pnlDatos2.add(lblTelefono);
-
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.weightx = 60;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid2.setConstraints(txtTelefono, gbc);
-        pnlDatos2.add(txtTelefono);
-
-        tb.addTab("Datos 2", pnlDatos2);
+        grid1.setConstraints(txtEstado, gbc);
+        pnlDatos.add(txtEstado);
+        this.add(pnlDatos, BorderLayout.CENTER);
 
         for (Component c : pnlDatos.getComponents()) {
             if (c instanceof JLabel) {
@@ -322,7 +283,7 @@ public class ClientesFrame extends JFrame {
         btnSiguiente.addActionListener(e -> {
             if (posicionActual < clientes.size() - 1) {
                 posicionActual++;
-                mostrarCliente(posicionActual);
+                mostrar();
             } else {
                 JOptionPane.showMessageDialog(this, "¡¡CUIDADO!! ESTE ES EL ULTIMO CLIENTE");
             }
@@ -359,7 +320,6 @@ public class ClientesFrame extends JFrame {
         btnEliminar.setIcon(Config.cargarIcono("eliminar.png", 30, 30));
         btnEliminar.addActionListener(e -> {
             eliminarCliente();
-            mostrar();
         });
         pnlBotones.add(btnEliminar);
         pnlBotones.add(btnDeshacer);
@@ -395,25 +355,6 @@ public class ClientesFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-    }
-
-    private void mostrarCliente(int posicion) {
-        Cliente c = clientes.get(posicion);
-        txtId.setText(String.valueOf(c.getId()));
-        txtNombre.setText(c.getNombre());
-        txtCif.setText(String.valueOf(c.getCif()));
-        txtEmail.setText(c.getEmail());
-        txtTelefono.setText(c.getTelefono());
-        txtEstado.setText(c.getEstado().toString());
-        fmtFecha.setText(c.getFechaAlta().toString());
-        txtProvincia.setText(c.getProvincia());
-        txtCiudad.setText(c.getCiudad());
-        lblLogoEmpresa.setIcon(Config.cargarIcono(c.getLogo(), 100, 100));
-    }
-
-    public static void main(String[] args) {
-        FlatGradiantoNatureGreenIJTheme.setup();
-        new ClientesFrame(null);
     }
 
     public void mostrar() {
@@ -464,16 +405,14 @@ public class ClientesFrame extends JFrame {
         txtEstado.setEnabled(estado != CONSULTA);
         txtTelefono.setEnabled(estado != CONSULTA);
 
-        btnPrimero.setEnabled(clientes.size() > 0 && estado == CONSULTA);
+        btnPrimero.setEnabled(posicionActual > 0 && estado == CONSULTA);
         btnAnterior.setEnabled(estado == CONSULTA && posicionActual > 0);
         btnSiguiente.setEnabled(estado == CONSULTA && posicionActual < clientes.size() - 1);
         btnUltimo.setEnabled(estado == CONSULTA && posicionActual < clientes.size() - 1);
-        btnPrimero.setEnabled(estado == CONSULTA && posicionActual > 0);
-        
+
         btnNuevo.setEnabled(estado == CONSULTA);
         btnEditar.setEnabled(estado == CONSULTA);
         btnDeshacer.setEnabled(estado != CONSULTA && clientes.size() > 0);
-        btnGuardar.addActionListener(e -> guardar());
         btnGuardar.setEnabled(estado != CONSULTA);
         btnEliminar.setEnabled(estado == CONSULTA);
 
@@ -485,9 +424,13 @@ public class ClientesFrame extends JFrame {
                 "AVISO!!!",
                 JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION)) {
-            servicio.deleteCliente(clientes.get(posicionActual).getId());
-            if (posicionActual == clientes.size()) {
-                posicionActual--;
+            Cliente c = clientes.get(posicionActual);
+            servicio.deleteCliente(c.getId());
+            clientes.remove(posicionActual);
+            if (!clientes.isEmpty()) {
+                if (posicionActual >= clientes.size()) {
+                    posicionActual = clientes.size() - 1;
+                }
             }
             mostrar();
 
@@ -497,6 +440,10 @@ public class ClientesFrame extends JFrame {
 
     public void guardar() {
         Cliente cli;
+        if (!validarCampos()) {
+            return;  // Si hay error, no continúa
+        }
+
         if (estado == ALTA) {
             cli = new Cliente();
         } else {
@@ -504,7 +451,7 @@ public class ClientesFrame extends JFrame {
             cli.setId(Integer.parseInt(txtId.getText()));
         }
         cli.setNombre(txtNombre.getText());
-        cli.setCif(Integer.parseInt(txtCif.getText()));
+        cli.setCif(txtCif.getText());
         cli.setEmail(txtEmail.getText());
         cli.setFechaAlta((Date) fmtFecha.getValue());
         cli.setProvincia(txtProvincia.getText());
@@ -525,19 +472,88 @@ public class ClientesFrame extends JFrame {
         cli.setTelefono(txtTelefono.getText());
         if (estado == ALTA) {
             servicio.addCliente(cli);
+            clientes.add(cli);
             posicionActual = clientes.size() - 1;
         } else {
             servicio.modificarCliente(cli);
         }
+
         estado = CONSULTA;
         mostrar();
     }
 
-    public void nuevo() {
+    private boolean validarCampos() {
+        // Validar Nombre
+        if (txtNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El nombre del cliente es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtNombre.requestFocus();
+            return false;
+        }
 
+        // Validar CIF
+        if (txtCif.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El CIF es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtCif.requestFocus();
+            return false;
+        }
+
+        // Validar Email
+        if (txtEmail.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El email es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            return false;
+        }
+
+        // Validar Teléfono
+        if (txtTelefono.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El teléfono es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtTelefono.requestFocus();
+            return false;
+        }
+
+        // Validar Provincia
+        if (txtProvincia.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La provincia es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtProvincia.requestFocus();
+            return false;
+        }
+
+        // Validar Ciudad
+        if (txtCiudad.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La ciudad es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtCiudad.requestFocus();
+            return false;
+        }
+
+        // Validar Fecha
+        if (fmtFecha.getValue() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "La fecha es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            fmtFecha.requestFocus();
+            return false;
+        }
+
+        return true;
     }
-}
 
-/*Arreglar el conteo de cuando cambias de cliente, mirar el ESTADO cuando editas un cliente y lo dejas vacion,
-/mirar bien la posicio de los botones y los tamaños, elegir unos botones mas pequeños, añadir un tabed pane para poner 
-mas datos y no quede tan pegado, darle separacionn a los botones, añadir comentarios y ponerlo ordenado*/
+}

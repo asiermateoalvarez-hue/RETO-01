@@ -4,7 +4,6 @@
  */
 package org.zabalburu.daw1.recyclon.vista;
 
-import com.formdev.flatlaf.intellijthemes.FlatGradiantoNatureGreenIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,12 +12,15 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,7 +40,7 @@ import org.zabalburu.daw1.recyclon.util.TipoProveedor;
  */
 public class ProveedorFrame extends JFrame {
 
-    private RecyclonServicio servicio;
+    private static RecyclonServicio servicio;
     private Usuario usuarioLogeado;
     private List<Proveedor> proveedores = new ArrayList<>();
 
@@ -57,16 +59,17 @@ public class ProveedorFrame extends JFrame {
     JTextField txtEmail = new JTextField();
 
     JLabel lblTelefono = new JLabel("Teléfono");
-    JTextField txtTelefono = new JTextField();
+    JFormattedTextField fmtTelefono
+            = new JFormattedTextField(NumberFormat.getIntegerInstance());
 
     JLabel lblTipo = new JLabel("Tipo");
-    JTextField txtTipo = new JTextField();
+    JComboBox<TipoProveedor> cbxTipo = new JComboBox<>(TipoProveedor.values());
 
     JLabel lblCuenta = new JLabel("Cuenta");
     JTextField txtCuenta = new JTextField();
 
     JLabel lblDiasPago = new JLabel("Días de Pago");
-    JTextField txtDiasPago = new JTextField();
+    JFormattedTextField fmtDiasPago = new JFormattedTextField(NumberFormat.getIntegerInstance());
 
     JLabel lblContacto = new JLabel("Contacto");
     JTextField txtContacto = new JTextField();
@@ -75,7 +78,7 @@ public class ProveedorFrame extends JFrame {
     JTextField txtDescripcion = new JTextField();
 
     JLabel lblEstado = new JLabel("Estado");
-    JTextField txtEstado = new JTextField();
+    JComboBox<EstadoProveedor> cbx = new JComboBox<>(EstadoProveedor.values());
 
     JLabel lblFecha = new JLabel("Fecha");
     JFormattedTextField fmtFecha
@@ -107,6 +110,8 @@ public class ProveedorFrame extends JFrame {
     Dimension dmVentana = new Dimension(Config.ADMIN_WIDTH, Config.ADMIN_HEIGHT);
 
     private int posicionActual = 0;
+
+    private boolean esNuevoProveedor = false;
 
     //GridbBagConstra
     GridBagLayout grid = new GridBagLayout();
@@ -190,8 +195,8 @@ public class ProveedorFrame extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 4;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid.setConstraints(txtTelefono, gbc);
-        pnlDatos.add(txtTelefono);
+        grid.setConstraints(fmtTelefono, gbc);
+        pnlDatos.add(fmtTelefono);
 
         gbc.gridx = 1;
         gbc.gridy = 5;
@@ -202,8 +207,8 @@ public class ProveedorFrame extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid.setConstraints(txtTipo, gbc);
-        pnlDatos.add(txtTipo);
+        grid.setConstraints(cbxTipo, gbc);
+        pnlDatos.add(cbxTipo);
 
         gbc.gridx = 1;
         gbc.gridy = 6;
@@ -226,8 +231,8 @@ public class ProveedorFrame extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 7;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid.setConstraints(txtDiasPago, gbc);
-        pnlDatos.add(txtDiasPago);
+        grid.setConstraints(fmtDiasPago, gbc);
+        pnlDatos.add(fmtDiasPago);
 
         gbc.gridx = 1;
         gbc.gridy = 8;
@@ -262,8 +267,8 @@ public class ProveedorFrame extends JFrame {
         gbc.gridx = 2;
         gbc.gridy = 10;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        grid.setConstraints(txtEstado, gbc);
-        pnlDatos.add(txtEstado);
+        grid.setConstraints(cbx, gbc);
+        pnlDatos.add(cbx);
 
         gbc.gridx = 1;
         gbc.gridy = 11;
@@ -314,6 +319,22 @@ public class ProveedorFrame extends JFrame {
 
         pnlBotones.add(Box.createHorizontalGlue());
         btnNuevo.setIcon(Config.cargarIcono("nuevo.png", 30, 30));
+        btnNuevo.addActionListener(e -> {
+            esNuevoProveedor = true;
+            setModoEdicion(true);
+            txtNombre.setText("");
+            txtCif.setText("");
+            txtContacto.setText("");
+            txtCuenta.setText("");
+            txtDescripcion.setText("");
+            fmtDiasPago.setValue(5);
+            txtEmail.setText("");
+            cbx.setSelectedIndex(0);
+            fmtTelefono.setValue(0);
+            cbxTipo.setSelectedIndex(0);
+            fmtFecha.setValue(new Date());
+
+        });
         pnlBotones.add(btnNuevo);
 
         btnEditar.setIcon(Config.cargarIcono("editar.png", 30, 30));
@@ -323,42 +344,110 @@ public class ProveedorFrame extends JFrame {
         pnlBotones.add(btnEditar);
 
         btnEliminar.setIcon(Config.cargarIcono("eliminar.png", 30, 30));
+        btnEliminar.addActionListener(e -> {
+            int respuesta = JOptionPane.showConfirmDialog(this,
+                    "¿Estás seguro de que quieres eliminar este proveedor?",
+                    "Confirmar eliminación",
+                    JOptionPane.YES_NO_OPTION);
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+                Proveedor p = proveedores.get(posicionActual);
+                servicio.deleteProveedor(p.getId());
+                proveedores.remove(posicionActual);
+
+                if (!proveedores.isEmpty()) {
+                    if (posicionActual >= proveedores.size()) {
+                        posicionActual = proveedores.size() - 1;
+                    }
+                    mostrarProveedores(posicionActual);
+                } else {
+                    txtNombre.setText("");
+                    txtCif.setText("");
+                    txtContacto.setText("");
+                    txtCuenta.setText("");
+                    txtDescripcion.setText("");
+                    fmtDiasPago.setValue(0);
+                    txtEmail.setText("");
+                    cbx.setSelectedIndex(0);
+                    fmtTelefono.setValue(0);
+                    cbxTipo.setSelectedIndex(0);
+                    fmtFecha.setValue(new Date());
+                }
+            }
+        });
 
         pnlBotones.add(btnEliminar);
         pnlBotones.add(Box.createHorizontalGlue());
 
         btnGuardar.setIcon(Config.cargarIcono("guardar.png", 30, 30));
         btnGuardar.addActionListener(e -> {
-            Proveedor p = proveedores.get(posicionActual);
-            p.setNombre(txtNombre.getText());
+            if (esNuevoProveedor) {
+                if (!validarCampos()) {
+                    return;  // Si hay error, no continúa
+                }
+                Proveedor p = new Proveedor();
+                p.setNombre(txtNombre.getText());
 
-            p.setCif(Integer.parseInt(txtCif.getText()));
+                p.setCif(txtCif.getText());
 
-            p.setEmail(txtEmail.getText());
+                p.setEmail(txtEmail.getText());
 
-            p.setTelefono(txtTelefono.getText());
+                p.setTelefono(((Number) fmtTelefono.getValue()).toString());
 
-            p.setTipo(TipoProveedor.valueOf(txtTipo.getText()));
+                p.setTipo((TipoProveedor) cbxTipo.getSelectedItem());
 
-            p.setCuentaBanco(txtCuenta.getText());
+                p.setCuentaBanco(txtCuenta.getText());
 
-            p.setDiasPago(Integer.parseInt(txtDiasPago.getText()));
+                p.setDiasPago(Integer.parseInt(fmtDiasPago.getText()));
 
-            p.setTelefono(txtTelefono.getText());
+                p.setPersonaContacto(txtContacto.getText());
 
-            p.setDescMovimiento(txtDescripcion.getText());
+                p.setDescMovimiento(txtDescripcion.getText());
 
-            p.setEstado(EstadoProveedor.valueOf(txtEstado.getText()));
+                p.setEstado((EstadoProveedor) cbx.getSelectedItem());
 
-            servicio.modificarProveedor(p);
-            setModoEdicion(false);
+                servicio.addProveedor(p);
+                proveedores.add(p);
+                posicionActual = proveedores.size() - 1;
+                esNuevoProveedor = false;
+            } else {
+
+                Proveedor p = proveedores.get(posicionActual);
+                p.setNombre(txtNombre.getText());
+
+                p.setCif(txtCif.getText());
+
+                p.setEmail(txtEmail.getText());
+
+                p.setTelefono(((Number) fmtTelefono.getValue()).toString());
+
+                p.setTipo((TipoProveedor) cbxTipo.getSelectedItem());
+
+                p.setCuentaBanco(txtCuenta.getText());
+
+                p.setDiasPago(Integer.parseInt(fmtDiasPago.getText()));
+
+                p.setPersonaContacto(txtContacto.getText());
+
+                p.setDescMovimiento(txtDescripcion.getText());
+
+                p.setEstado((EstadoProveedor) cbx.getSelectedItem());
+
+                servicio.modificarProveedor(p);
+
+            }
             mostrarProveedores(posicionActual);
+            setModoEdicion(false);
+
         });
         pnlBotones.add(btnGuardar);
 
-        btnCancelar.setIcon(Config.cargarIcono("cancelar.png", 30, 30));
+        btnCancelar.setIcon(Config.cargarIcono("deshacer.png", 30, 30));
         btnCancelar.addActionListener(e -> {
-            mostrarProveedores(posicionActual);
+            esNuevoProveedor = false;
+            if (posicionActual < proveedores.size()) {
+                mostrarProveedores(posicionActual);
+            }
             setModoEdicion(false);
         });
         pnlBotones.add(btnCancelar);
@@ -409,22 +498,17 @@ public class ProveedorFrame extends JFrame {
         return btnVolver;
     }
 
-    public static void main(String[] args) {
-        FlatGradiantoNatureGreenIJTheme.setup();
-        new ProveedorFrame(null);
-    }
-
     private void setCamposEditables(boolean editable) {
         txtNombre.setEnabled(editable);
         txtCif.setEnabled(editable);
         txtEmail.setEnabled(editable);
-        txtTelefono.setEnabled(editable);
-        txtTipo.setEnabled(editable);
+        fmtTelefono.setEnabled(editable);
+        cbxTipo.setEnabled(editable);
         txtCuenta.setEnabled(editable);
-        txtDiasPago.setEnabled(editable);
+        fmtDiasPago.setEnabled(editable);
         txtContacto.setEnabled(editable);
         txtDescripcion.setEnabled(editable);
-        txtEstado.setEnabled(editable);
+        cbx.setEnabled(editable);
         fmtFecha.setEnabled(editable);
     }
 
@@ -450,22 +534,138 @@ public class ProveedorFrame extends JFrame {
 
     private void mostrarProveedores(int posicion) {
         Proveedor p = proveedores.get(posicion);
+
+        TipoProveedor tipoProveedor = p.getTipo();
+        EstadoProveedor estadoProveedor = p.getEstado();
+        boolean encontrado = false;
+
         lblPosicionDatos.setText(" %2d / %2d".formatted((posicion + 1), proveedores.size()));
         txtNombre.setText(p.getNombre());
         txtCif.setText(String.valueOf(p.getCif()));
         txtEmail.setText(p.getEmail());
-        txtTelefono.setText(p.getTelefono());
-        txtTipo.setText(p.getTipo().toString());
-        txtCuenta.setText(p.getCuentaBanco());
-        txtDiasPago.setText(String.valueOf(p.getDiasPago()));
-        txtContacto.setText(p.getTelefono());
-        txtDescripcion.setText(p.getDescMovimiento());
-        txtEstado.setText(p.getEstado().toString());
+        fmtTelefono.setText(p.getTelefono());
 
-        DateFormat df = DateFormat.getDateInstance(DateFormat.MEDIUM);
+        if (tipoProveedor != null) {
+            cbxTipo.setSelectedItem(tipoProveedor);
+        }
+
+        txtCuenta.setText(p.getCuentaBanco());
+        fmtDiasPago.setText(String.valueOf(p.getDiasPago()));
+        txtContacto.setText(p.getPersonaContacto());
+        txtDescripcion.setText(p.getDescMovimiento());
+
+        if (estadoProveedor != null) {
+            cbx.setSelectedItem(estadoProveedor);
+        }
+
+        DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
         fmtFecha.setText(df.format(p.getFechaAlta()));
         lblLogoEmpresa.setIcon(Config.cargarIcono(p.getLogo(), 100, 100));
 
+    }
+
+    private boolean validarCampos() {
+        // Validar Nombre
+        if (txtNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El nombre del proveedor es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtNombre.requestFocus();
+            return false;
+        }
+
+        // Validar CIF
+        if (txtCif.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El CIF es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtCif.requestFocus();
+            return false;
+        }
+
+        // Validar Email
+        if (txtEmail.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El email es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtEmail.requestFocus();
+            return false;
+        }
+
+        // Validar Teléfono
+        if (fmtTelefono.getValue() == null || fmtTelefono.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "El teléfono es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            fmtTelefono.requestFocus();
+            return false;
+        }
+
+        // Validar Tipo
+        if (cbxTipo.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "El tipo es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            cbxTipo.requestFocus();
+            return false;
+        }
+
+        // Validar Cuenta
+        if (txtCuenta.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La cuenta bancaria es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtCuenta.requestFocus();
+            return false;
+        }
+
+        // Validar Días de Pago
+        if (fmtDiasPago.getValue() == null || fmtDiasPago.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Los días de pago son obligatorios",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            fmtDiasPago.requestFocus();
+            return false;
+        }
+
+        // Validar Contacto
+        if (txtContacto.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "La persona de contacto es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            txtContacto.requestFocus();
+            return false;
+        }
+
+        // Validar Estado
+        if (cbx.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "El estado es obligatorio",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            cbx.requestFocus();
+            return false;
+        }
+
+        // Validar Fecha
+        if (fmtFecha.getValue() == null) {
+            JOptionPane.showMessageDialog(this,
+                    "La fecha es obligatoria",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            fmtFecha.requestFocus();
+            return false;
+        }
+
+        return true;
     }
 
 }

@@ -22,7 +22,7 @@ public class Empresa {
 
     @EqualsAndHashCode.Include
     private Integer id;
-    private Integer cif;
+    private String cif;
     private String nombre;
     private String email;
     private String telefono;

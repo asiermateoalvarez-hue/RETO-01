@@ -49,34 +49,34 @@ public class RecyclonServicio {
         registrarUsuariosPrueba(new Usuario(4, "Diego", "Castillo", "DiegoCastillo", "diego"), "diego");
 
         // ==================== CLIENTES (10 - Empresas que compran muebles) ====================
-        Cliente c1 = new Cliente(1, 12345678, "TechNova Startups", "compras@technova.es", "944112233", "48001", "Bilbao", "Bizkaia", "logo_tech.png",
+        Cliente c1 = new Cliente(1, "12345678D", "TechNova Startups", "compras@technova.es", "944112233", "48001", "Bilbao", "Bizkaia", "logo_tech.png",
                 new GregorianCalendar(2023, 0, 10).getTime(), 15000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c2 = new Cliente(2, 87654321, "Bufete Abogados Martínez", "admin@martinezlegal.com", "911223344", "28001", "Madrid", "Madrid", "logo_bufete.png",
+        Cliente c2 = new Cliente(2, "87654321E", "Bufete Abogados Martínez", "admin@martinezlegal.com", "911223344", "28001", "Madrid", "Madrid", "logo_bufete.png",
                 new GregorianCalendar(2023, 1, 15).getTime(), 5000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c3 = new Cliente(3, 11223344, "Coworking Espacio Vivo", "hola@espaciovivo.com", "933445566", "08005", "Barcelona", "Barcelona", "logo_cowork.png",
+        Cliente c3 = new Cliente(3, "11223344T", "Coworking Espacio Vivo", "hola@espaciovivo.com", "933445566", "08005", "Barcelona", "Barcelona", "logo_cowork.png",
                 new GregorianCalendar(2022, 5, 20).getTime(), 8000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c4 = new Cliente(4, 99887766, "Call Center Conecta", "infraestructura@conecta.es", "954112233", "41001", "Sevilla", "Sevilla", "logo_call.png",
+        Cliente c4 = new Cliente(4, "99887766G", "Call Center Conecta", "infraestructura@conecta.es", "954112233", "41001", "Sevilla", "Sevilla", "logo_call.png",
                 new GregorianCalendar(2023, 8, 1).getTime(), 20000.0, new ArrayList<>(), EstadoCliente.SUSPENDIDO);
 
-        Cliente c5 = new Cliente(5, 55667788, "Academia Formación Futuro", "info@futuro.eus", "945666333", "01001", "Vitoria", "Álava", "logo_acad.png",
+        Cliente c5 = new Cliente(5, "55667788D", "Academia Formación Futuro", "info@futuro.eus", "945666333", "01001", "Vitoria", "Álava", "logo_acad.png",
                 new GregorianCalendar(2021, 10, 5).getTime(), 3000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c6 = new Cliente(6, 44332211, "Clínica Dental Sonrisas", "recepcion@sonrisas.com", "963221100", "46001", "Valencia", "Valencia", "logo_dent.png",
+        Cliente c6 = new Cliente(6, "44332211F", "Clínica Dental Sonrisas", "recepcion@sonrisas.com", "963221100", "46001", "Valencia", "Valencia", "logo_dent.png",
                 new GregorianCalendar(2023, 3, 12).getTime(), 2500.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c7 = new Cliente(7, 66778899, "Arquitectos Verticales", "estudio@vertical.com", "944888999", "48991", "Getxo", "Bizkaia", "logo_arq.png",
+        Cliente c7 = new Cliente(7, "66778899X", "Arquitectos Verticales", "estudio@vertical.com", "944888999", "48991", "Getxo", "Bizkaia", "logo_arq.png",
                 new GregorianCalendar(2022, 2, 28).getTime(), 6000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c8 = new Cliente(8, 22334455, "Hotel Business Center", "eventos@hotelbc.com", "952001122", "29001", "Málaga", "Málaga", "logo_hotel.png",
+        Cliente c8 = new Cliente(8, "22334455S", "Hotel Business Center", "eventos@hotelbc.com", "952001122", "29001", "Málaga", "Málaga", "logo_hotel.png",
                 new GregorianCalendar(2023, 6, 25).getTime(), 12000.0, new ArrayList<>(), EstadoCliente.INACTIVO);
 
-        Cliente c9 = new Cliente(9, 77889900, "Consultoría Estratégica", "admin@consultoria.es", "910001122", "28050", "Madrid", "Madrid", "logo_consul.png",
+        Cliente c9 = new Cliente(9, "77889900V", "Consultoría Estratégica", "admin@consultoria.es", "910001122", "28050", "Madrid", "Madrid", "logo_consul.png",
                 new GregorianCalendar(2023, 9, 10).getTime(), 4000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
-        Cliente c10 = new Cliente(10, 33445566, "Biblioteca Municipal", "compras@biblio.org", "942334455", "39001", "Santander", "Cantabria", "logo_biblio.png",
+        Cliente c10 = new Cliente(10, "33445566L", "Biblioteca Municipal", "compras@biblio.org", "942334455", "39001", "Santander", "Cantabria", "logo_biblio.png",
                 new GregorianCalendar(2020, 0, 15).getTime(), 10000.0, new ArrayList<>(), EstadoCliente.ACTIVO);
 
         // Añadir clientes
@@ -92,34 +92,34 @@ public class RecyclonServicio {
         addCliente(c10);
 
         // ==================== PROVEEDORES (10 - Fabricantes y servicios) ====================
-        Proveedor p1 = new Proveedor(11, 90011122, "Sillas Ergonómicas S.L.", "pedidos@sillas.com", "961234567", "46020", "Valencia", "Valencia", "logo_silla.png",
-                new GregorianCalendar(2020, 0, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Mobiliario", "ES980000111122223333", 30, "Juan Sillería", "Stock Sillas");
+        Proveedor p1 = new Proveedor(11, "90011122L", "Sillas Ergonómicas S.L.", "pedidos@sillas.com", "961234567", "46020", "Valencia", "Valencia", "logo_silla.png",
+                new GregorianCalendar(2020, 0, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.INACTIVO, "Mobiliario", "ES980000111122223333", 30, "Juan Sillería", "Stock Sillas");
 
-        Proveedor p2 = new Proveedor(12, 90033344, "Maderas del Norte", "almacen@maderas.es", "943112233", "20009", "San Sebastián", "Gipuzkoa", "logo_mad.png",
+        Proveedor p2 = new Proveedor(12, "90033344H", "Maderas del Norte", "almacen@maderas.es", "943112233", "20009", "San Sebastián", "Gipuzkoa", "logo_mad.png",
                 new GregorianCalendar(2019, 5, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Materia Prima", "ES120000111122223333", 45, "Mikel Roble", "Tableros mesa");
 
-        Proveedor p3 = new Proveedor(13, 80055566, "Lámparas y Diseño", "ventas@lyd.com", "934000000", "08040", "Barcelona", "Barcelona", "logo_lamp.png",
+        Proveedor p3 = new Proveedor(13, "80055566L", "Lámparas y Diseño", "ventas@lyd.com", "934000000", "08040", "Barcelona", "Barcelona", "logo_lamp.png",
                 new GregorianCalendar(2021, 2, 20).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Iluminación", "ES450000111122223333", 15, "Carla Luz", "Lámparas despacho");
 
-        Proveedor p4 = new Proveedor(14, 70088899, "Transportes Rápidos", "logistica@transportes.es", "900100200", "28030", "Madrid", "Madrid", "logo_trans.png",
+        Proveedor p4 = new Proveedor(14, "70088899K", "Transportes Rápidos", "logistica@transportes.es", "900100200", "28030", "Madrid", "Madrid", "logo_trans.png",
                 new GregorianCalendar(2020, 8, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Logística", "ES780000111122223333", 30, "Paco Camión", "Envíos clientes");
 
-        Proveedor p5 = new Proveedor(15, 60011100, "Iberdrola Empresas", "facturas@iberdrola.es", "900225235", "48008", "Bilbao", "Bizkaia", "logo_iber.png",
-                new GregorianCalendar(2018, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Suministros", "ES990000111122223333", 10, "Att. Cliente", "Luz almacén");
+        Proveedor p5 = new Proveedor(15, "60011100F", "Iberdrola Empresas", "facturas@iberdrola.es", "900225235", "48008", "Bilbao", "Bizkaia", "logo_iber.png",
+                new GregorianCalendar(2018, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.INACTIVO, "Suministros", "ES990000111122223333", 10, "Att. Cliente", "Luz almacén");
 
-        Proveedor p6 = new Proveedor(16, 50022233, "Herrajes Industriales", "pedidos@herrajes.com", "976112233", "50001", "Zaragoza", "Zaragoza", "logo_herr.png",
+        Proveedor p6 = new Proveedor(16, "50022233J", "Herrajes Industriales", "pedidos@herrajes.com", "976112233", "50001", "Zaragoza", "Zaragoza", "logo_herr.png",
                 new GregorianCalendar(2022, 3, 10).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Componentes", "ES110000111122223333", 60, "Ana Tuercas", "Tornillería");
 
-        Proveedor p7 = new Proveedor(17, 40044455, "Inmobiliaria Industrial", "alquileres@inmo.com", "944555666", "48010", "Bilbao", "Bizkaia", "logo_inmo.png",
+        Proveedor p7 = new Proveedor(17, "40044455D", "Inmobiliaria Industrial", "alquileres@inmo.com", "944555666", "48010", "Bilbao", "Bizkaia", "logo_inmo.png",
                 new GregorianCalendar(2018, 0, 1).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Alquiler", "ES330000111122223333", 5, "Luis Casero", "Alquiler Nave");
 
-        Proveedor p8 = new Proveedor(18, 30066677, "Oficina Total Mayorista", "b2b@oficinatotal.com", "911888999", "28900", "Getafe", "Madrid", "logo_ofi.png",
+        Proveedor p8 = new Proveedor(18, "30066677M", "Oficina Total Mayorista", "b2b@oficinatotal.com", "911888999", "28900", "Getafe", "Madrid", "logo_ofi.png",
                 new GregorianCalendar(2023, 1, 5).getTime(), TipoProveedor.OCASIONAL, new ArrayList<>(), EstadoProveedor.ACTIVO, "Complementos", "ES550000111122223333", 0, "Sara Stock", "Pizarras/Archivadores");
 
-        Proveedor p9 = new Proveedor(19, 20088899, "Limpiezas Brillo", "servicios@brillo.com", "944222333", "48901", "Barakaldo", "Bizkaia", "logo_limp.png",
+        Proveedor p9 = new Proveedor(19, "20088899P", "Limpiezas Brillo", "servicios@brillo.com", "944222333", "48901", "Barakaldo", "Bizkaia", "logo_limp.png",
                 new GregorianCalendar(2021, 6, 15).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Servicios", "ES770000111122223333", 30, "Elena Limpia", "Limpieza exposición");
 
-        Proveedor p10 = new Proveedor(20, 10099900, "Movistar Negocios", "pymes@movistar.es", "1004", "28050", "Madrid", "Madrid", "logo_mov.png",
+        Proveedor p10 = new Proveedor(20, "10099900E", "Movistar Negocios", "pymes@movistar.es", "1004", "28050", "Madrid", "Madrid", "logo_mov.png",
                 new GregorianCalendar(2019, 4, 20).getTime(), TipoProveedor.RECURRENTE, new ArrayList<>(), EstadoProveedor.ACTIVO, "Telecomunicaciones", "ES220000111122223333", 30, "Soporte", "Fibra y Móvil");
 
         // Añadir proveedores

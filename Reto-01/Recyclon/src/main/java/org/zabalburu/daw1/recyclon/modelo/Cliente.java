@@ -34,6 +34,11 @@ public class Cliente extends Empresa {
         this.movimientos = movimientos;
         this.estado = estado;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "fechaAlta=" + fechaAlta + ", limiteCredito=" + limiteCredito + ", estado=" + estado + '}';
+    }
     
     
 }

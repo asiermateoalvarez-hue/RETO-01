@@ -81,12 +81,12 @@ public class ClientesFrame extends JFrame {
 
     JButton btnAnterior = new JButton();
     JButton btnSiguiente = new JButton();
-    JButton btnNuevo = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
-    JButton btnEditar = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
-    JButton btnEliminar = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
-    JButton btnVolver = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
-    JButton btnGuardar = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
-    JButton btnDeshacer = new JButton(); //Le quito los nombres porque ocupa mucho, mañana lo miramos bien
+    JButton btnNuevo = new JButton(); 
+    JButton btnEditar = new JButton(); 
+    JButton btnEliminar = new JButton(); 
+    JButton btnVolver = new JButton(); 
+    JButton btnGuardar = new JButton(); 
+    JButton btnDeshacer = new JButton(); 
     JButton btnPrimero = new JButton();
     JButton btnUltimo = new JButton();
 

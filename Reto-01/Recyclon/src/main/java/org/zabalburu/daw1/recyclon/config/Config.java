@@ -22,8 +22,8 @@ public class Config {
     public static final int MENU_HEIGHT = 400;
     public static final int ADMIN_WIDTH = 800;
     public static final int ADMIN_HEIGHT = 700;
-    public static final int DIALOG_WIDTH = 500;
-    public static final int DIALOG_HEIGHT = 400;
+    public static final int DIALOG_WIDTH = 700;
+    public static final int DIALOG_HEIGHT = 600;
 
     // ========= COLORES =========
     public static final Color COLOR_FONDO = new Color(218, 245, 228);
@@ -35,7 +35,7 @@ public class Config {
 
     // ========= FUENTE =========
     public static final Font FUENTE_TITULO = new Font("Arial", Font.BOLD, 24);
-    public static final Font FUENTE_NORMAL = new Font("Arial", Font.PLAIN, 14);
+    public static final Font FUENTE_NORMAL = new Font("Arial", Font.BOLD, 14);
     public static final Font FUENTE_PEQUEÑA = new Font("Arial", Font.PLAIN, 12);
 
     // ========= RUTA RECURSOS =========
@@ -44,7 +44,7 @@ public class Config {
     public static ImageIcon cargarLogo(int ancho, int alto) {
         try {
             ImageIcon logo = new ImageIcon(Config.class.getResource(Config.RUTA_IMAGENES + "logo.png"));
-            Image img = logo.getImage().getScaledInstance(100, 100, 100);
+            Image img = logo.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
             return new ImageIcon(img);
         } catch (Exception e) {
             return null;

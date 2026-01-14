@@ -43,13 +43,18 @@ public class Movimiento {
      */
     public boolean esValido() {
         if (tipo == TipoMovimiento.COBRO) {
-           
+
             return cliente != null && proveedor == null;
         } else if (tipo == TipoMovimiento.GASTO) {
-          
+
             return proveedor != null && cliente == null;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Movimiento{" + "id=" + id + ", fecha=" + fecha + ", monto=" + monto + ", descripcion=" + descripcion + ", tipo=" + tipo + ", estado=" + estado + '}';
     }
 
 }

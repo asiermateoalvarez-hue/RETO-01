@@ -44,4 +44,11 @@ public class Proveedor extends Empresa {
     private Integer diasPago;
     private String personaContacto;
     private String descMovimiento;
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "fechaAlta=" + fechaAlta + ", tipo=" + tipo + ", estado=" + estado + ", categoria=" + categoria + ", cuentaBanco=" + cuentaBanco + ", diasPago=" + diasPago + ", personaContacto=" + personaContacto + ", descMovimiento=" + descMovimiento + '}';
+    }
+    
+    
 }

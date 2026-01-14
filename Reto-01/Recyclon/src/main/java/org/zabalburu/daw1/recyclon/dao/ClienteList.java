@@ -29,7 +29,7 @@ public class ClienteList implements ClienteDAO {
 
         int posc = clientes.indexOf(buscar);
         if (posc != -1) {
-            return clientes.get(id);
+            return clientes.get(posc);
         } else {
             return null;
         }
@@ -66,7 +66,7 @@ public class ClienteList implements ClienteDAO {
         if (!clientes.isEmpty()) {
             Integer max = clientes.get(0).getId();
             for (int i = 0; i < clientes.size(); i++) {
-                if (clientes.size() > max) {
+                if (clientes.get(i).getId() > max) {
                     max = clientes.get(i).getId();
                 }
 

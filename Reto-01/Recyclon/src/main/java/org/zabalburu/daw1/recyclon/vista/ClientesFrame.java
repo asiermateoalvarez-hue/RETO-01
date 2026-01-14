@@ -70,8 +70,8 @@ public class ClientesFrame extends JFrame {
     JLabel lblMunicipio = new JLabel("Municipio");
     JTextField txtMunicipio = new JTextField();
 
-    JButton btnAnterior = new JButton();
-    JButton btnSiguiente = new JButton();
+    JButton btnAnterior = new JButton("Anterior");
+    JButton btnSiguiente = new JButton("Siguiente");
     JButton btnNuevo = new JButton("Nuevo");
     JButton btnEditar = new JButton("Editar");
     JButton btnEliminar = new JButton("Eliminar");

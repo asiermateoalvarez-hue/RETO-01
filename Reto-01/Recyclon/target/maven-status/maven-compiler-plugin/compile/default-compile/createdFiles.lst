@@ -1,0 +1,14 @@
+org\zabalburu\daw1\recyclon\dao\ProveedorList.class
+org\zabalburu\daw1\recyclon\modelo\Usuario.class
+org\zabalburu\daw1\recyclon\dao\ProveedorDAO.class
+org\zabalburu\daw1\recyclon\modelo\Movimiento.class
+org\zabalburu\daw1\recyclon\dao\MovimientoDAO.class
+org\zabalburu\daw1\recyclon\dao\ClienteList.class
+org\zabalburu\daw1\recyclon\modelo\Empresa.class
+org\zabalburu\daw1\recyclon\modelo\Cliente.class
+org\zabalburu\daw1\recyclon\modelo\Proveedor.class
+org\zabalburu\daw1\recyclon\dao\UsuarioDAO.class
+org\zabalburu\daw1\recyclon\dao\MovimientoList.class
+org\zabalburu\daw1\recyclon\Recyclon.class
+org\zabalburu\daw1\recyclon\dao\ClienteDAO.class
+org\zabalburu\daw1\recyclon\modelo\Cuenta.class

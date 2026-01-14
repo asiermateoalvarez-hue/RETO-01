@@ -114,8 +114,9 @@ public class MovimientoFrame extends JFrame {
 
         //DATOS
         pnlDatos.add(jspDatos, BorderLayout.CENTER);
+        pnlDatos.add(pnlBtnCobroyGasto,BorderLayout.NORTH);
 
-        pnlBtnCobroyGasto.setBorder(new EmptyBorder(10, 0, 10, 15));
+       //pnlBtnCobroyGasto.setBorder(new EmptyBorder(10, 0, 10, 15));
 
         btnCobros.addActionListener(e -> {
             tipoMovimiento = COBROS;
@@ -130,8 +131,8 @@ public class MovimientoFrame extends JFrame {
             actualizarBotones();
         });
         pnlBtnCobroyGasto.add(btnGastos);
-
-        pnlDatos.add(pnlBtnCobroyGasto, BorderLayout.SOUTH);
+        pnlDatos.add(jspDatos,BorderLayout.CENTER);
+        //pnlDatos.add(pnlBtnCobroyGasto, BorderLayout.SOUTH);
 
         this.add(pnlCabecera, BorderLayout.NORTH);
         this.add(pnlDatos, BorderLayout.CENTER);
@@ -144,6 +145,7 @@ public class MovimientoFrame extends JFrame {
 
     private void cargarTabla() {
         if (tipoMovimiento == COBROS) {
+            
             
             // Columnas: ID, Descripción, Monto, Fecha, Cliente
         } else if (tipoMovimiento == GASTOS) {
@@ -197,5 +199,5 @@ public class MovimientoFrame extends JFrame {
     private void actualizarBotones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+   
 }

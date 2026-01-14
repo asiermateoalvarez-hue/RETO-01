@@ -44,7 +44,7 @@ public class Config {
     public static ImageIcon cargarLogo(int ancho, int alto) {
         try {
             ImageIcon logo = new ImageIcon(Config.class.getResource(Config.RUTA_IMAGENES + "logo.png"));
-            Image img = logo.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+            Image img = logo.getImage().getScaledInstance(100, 100, 100);
             return new ImageIcon(img);
         } catch (Exception e) {
             return null;

@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -19,6 +20,7 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -47,7 +49,7 @@ public class ProveedorFrame extends JFrame {
     // ============ Datos =============
     JLabel lblTitulo = new JLabel("GESTION DE PROVEEDORES");
     JLabel lblLogo = new JLabel();
-    JLabel lblLogoEmpresa = new JLabel("Logo Empresa");
+    JLabel lblLogoEmpresa = new JLabel();
 
     JLabel lblNombre = new JLabel("Nombre");
     JTextField txtNombre = new JTextField();
@@ -282,6 +284,8 @@ public class ProveedorFrame extends JFrame {
         grid.setConstraints(fmtFecha, gbc);
         pnlDatos.add(fmtFecha);
 
+        
+
         for (Component c : pnlDatos.getComponents()) {
             if (c instanceof JLabel) {
                 c.setFont(Config.FUENTE_NORMAL);
@@ -333,6 +337,8 @@ public class ProveedorFrame extends JFrame {
             fmtTelefono.setValue(0);
             cbxTipo.setSelectedIndex(0);
             fmtFecha.setValue(new Date());
+            Image img = new ImageIcon("/imagenes/noUser.png").getImage();
+            lblLogoEmpresa.setIcon(Config.cargarIcono("noUser.png", 50, 50));
 
         });
         pnlBotones.add(btnNuevo);
@@ -561,6 +567,12 @@ public class ProveedorFrame extends JFrame {
         DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
         fmtFecha.setText(df.format(p.getFechaAlta()));
         lblLogoEmpresa.setIcon(Config.cargarIcono(p.getLogo(), 100, 100));
+        Image img = new ImageIcon("/imagenes/noUser.png").getImage();
+        if (p.getLogo() != null) {
+            lblLogoEmpresa.setIcon(Config.cargarIcono(p.getLogo(), 100, 100));
+        } else {
+            img = new ImageIcon("imagenes/noUser.png").getImage();
+        }
 
     }
 

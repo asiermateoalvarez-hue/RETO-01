@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,21 +19,19 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import org.zabalburu.daw1.gestionempleados.modelo.Usuario;
 import org.zabalburu.daw1.recyclon.config.Config;
 import org.zabalburu.daw1.recyclon.modelo.Cliente;
-import org.zabalburu.daw1.recyclon.modelo.Proveedor;
 import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
-import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 
 /**
  *
@@ -48,7 +47,7 @@ public class ClientesFrame extends JFrame {
     //////Cabecera/////////
     JLabel lblTitulo = new JLabel("GESTION DE CLIENTES");
     JLabel lblLogo = new JLabel();
-    JLabel lblLogoEmpresa = new JLabel("Logo Empresa");
+    JLabel lblLogoEmpresa = new JLabel();
 
     JLabel lblNumerico = new JLabel();
 
@@ -137,7 +136,6 @@ public class ClientesFrame extends JFrame {
         gbc.gridy = 0;
         gbc.gridwidth = 1;
         grid1.setConstraints(lblLogoEmpresa, gbc);
-        lblLogoEmpresa.setOpaque(true);
         pnlDatos.add(lblLogoEmpresa);
 
         gbc.gridx = 1;
@@ -374,6 +372,8 @@ public class ClientesFrame extends JFrame {
             txtCiudad.setText("");
             txtEstado.setText("");
             txtTelefono.setText("");
+            Image img = new ImageIcon("/imagenes/noUser.png").getImage();
+            lblLogoEmpresa.setIcon(Config.cargarIcono("noUser.png", 50, 50));
         } else {
             lblNumerico.setText(" [ %2d / %2d ] ".formatted((posicionActual + 1), clientes.size()));
             Cliente actual = clientes.get(posicionActual);
@@ -386,28 +386,39 @@ public class ClientesFrame extends JFrame {
             txtCiudad.setText(actual.getCiudad());
             txtEstado.setText("");
             txtTelefono.setText(actual.getTelefono());
-            /*Image imag;
-            if (actual.getFoto()!=null){
-                imag = new ImageIcon("imagenes/"+actual.getFoto()).getImage();
+            Image img;
+            if (actual.getLogo() != null) {
+                lblLogoEmpresa.setIcon(Config.cargarIcono(actual.getLogo(), 100, 100));
             } else {
-                imag = new ImageIcon("imagenes/nouser.png").getImage();                
+                img = new ImageIcon("imagenes/noUser.png").getImage();
             }
-            imag = CircleImage.getCircleImage(imag);
-            lblFoto.setIcon(new ImageIcon(imag.getScaledInstance(80, 80, Image.SCALE_SMOOTH)));
-        } */
-        }
-        txtNombre.setEnabled(estado != CONSULTA);
-        txtCif.setEnabled(estado != CONSULTA);
-        txtEmail.setEnabled(estado != CONSULTA);
-        fmtFecha.setEnabled(estado != CONSULTA);
-        txtProvincia.setEnabled(estado != CONSULTA);
-        txtCiudad.setEnabled(estado != CONSULTA);
-        txtEstado.setEnabled(estado != CONSULTA);
-        txtTelefono.setEnabled(estado != CONSULTA);
 
-        btnPrimero.setEnabled(posicionActual > 0 && estado == CONSULTA);
-        btnAnterior.setEnabled(estado == CONSULTA && posicionActual > 0);
-        btnSiguiente.setEnabled(estado == CONSULTA && posicionActual < clientes.size() - 1);
+        }
+
+        txtNombre.setEnabled(estado
+                != CONSULTA);
+        txtCif.setEnabled(estado
+                != CONSULTA);
+        txtEmail.setEnabled(estado
+                != CONSULTA);
+        fmtFecha.setEnabled(estado
+                != CONSULTA);
+        txtProvincia.setEnabled(estado
+                != CONSULTA);
+        txtCiudad.setEnabled(estado
+                != CONSULTA);
+        txtEstado.setEnabled(estado
+                != CONSULTA);
+        txtTelefono.setEnabled(estado
+                != CONSULTA);
+
+        btnPrimero.setEnabled(posicionActual
+                > 0 && estado == CONSULTA);
+        btnAnterior.setEnabled(estado
+                == CONSULTA && posicionActual > 0);
+        btnSiguiente.setEnabled(estado
+                == CONSULTA && posicionActual < clientes.size()
+                - 1);
         btnUltimo.setEnabled(estado == CONSULTA && posicionActual < clientes.size() - 1);
 
         btnNuevo.setEnabled(estado == CONSULTA);
@@ -555,5 +566,4 @@ public class ClientesFrame extends JFrame {
 
         return true;
     }
-
 }

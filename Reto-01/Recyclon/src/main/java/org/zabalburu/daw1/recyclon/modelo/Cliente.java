@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.zabalburu.daw1.recyclon.util.EstadoCliente;
 
 /**
  *
@@ -18,15 +19,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+
 public class Cliente extends Empresa {
-    @EqualsAndHashCode.Include
-    private Integer id;
+
     private Date fechaAlta;
     private Double limiteCredito;
     private List<Movimiento> movimientos;
-    private int estado;
-    public static final int INACTIVO = 0;
-    public static final int ACTIVO = 1;
-    public static final int SUSPENDIDO = 2;
+    private EstadoCliente estado;
+
+    public Cliente(Integer id, Integer cif, String nombre, String email, String telefono, String codigoPostal, String ciudad, String provincia, String logo, Date fechaAlta, Double limiteCredito, List<Movimiento> movimientos, EstadoCliente estado) {
+        super(id, cif, nombre, email, telefono, codigoPostal, ciudad, provincia, logo);
+        this.fechaAlta = fechaAlta;
+        this.limiteCredito = limiteCredito;
+        this.movimientos = movimientos;
+        this.estado = estado;
+    }
+    
+    
 }

@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.zabalburu.daw1.recyclon.util.EstadoMovimiento;
+import org.zabalburu.daw1.recyclon.util.TipoMovimiento;
 
 /**
  *
@@ -25,15 +27,10 @@ public class Movimiento {
     private Date fecha;
     private Double monto;
     private String descripcion;
-    private int tipo;
-    public static final int COBRO = 1;
-    public static final int GASTO = 2;
-    private int estado;
-    public static final int PENDIENTE = 1;
-    public static final int PAGADO = 0;
+    private TipoMovimiento tipo;
+    private EstadoMovimiento estado;
     private Cliente cliente;
     private Proveedor proveedor;
-    private Cuenta cuentaBanco;
 
     /**
      * Valida que el movimiento tenga la estructura correcta según su tipo.
@@ -45,13 +42,13 @@ public class Movimiento {
      * @return true si el movimiento es válido, false en caso contrario.
      */
     public boolean esValido() {
-        if (tipo == COBRO) {
+        if (tipo == TipoMovimiento.COBRO) {
             /*
             Si el tipo es un COBRO significa que debe ser un cliente
             y NO un proveedor
              */
             return cliente != null && proveedor == null;
-        } else if (tipo == GASTO) {
+        } else if (tipo == TipoMovimiento.GASTO) {
             /*
             Si el tipo es un GASTO significa que debe ser un proveedor
             y NO un Cliente

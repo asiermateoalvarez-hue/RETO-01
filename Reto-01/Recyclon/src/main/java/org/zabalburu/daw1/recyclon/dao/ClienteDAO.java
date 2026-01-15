@@ -9,7 +9,8 @@ import org.zabalburu.daw1.recyclon.modelo.Cliente;
 
 /**
  *
- * @author Equipo 03
+ * @author Equipo03
+
  * Interfaz DAO para la gestión de clientes.
  * Define los métodos necesarios para realizar operaciones CRUD sobre clientes.
  */

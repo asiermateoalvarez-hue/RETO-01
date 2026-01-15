@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.zabalburu.daw1.recyclon.util.EstadoProveedor;
+import org.zabalburu.daw1.recyclon.util.TipoProveedor;
 
 /**
  *
@@ -18,22 +20,35 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Proveedor extends Empresa {
 
-    @EqualsAndHashCode.Include
-    private Integer id;
+    public Proveedor(Integer id, String cif, String nombre, String email, String telefono, String codigoPostal, String ciudad, String provincia, String logo, Date fechaAlta, TipoProveedor tipo, List<Movimiento> movimientos, EstadoProveedor estado, String categoria, String cuentaBanco, Integer diasPago, String personaContacto, String descMovimiento) {
+        super(id, cif, nombre, email, telefono, codigoPostal, ciudad, provincia, logo);
+        this.fechaAlta = fechaAlta;
+        this.tipo = tipo;
+        this.movimientos = movimientos;
+        this.estado = estado;
+        this.categoria = categoria;
+        this.cuentaBanco = cuentaBanco;
+        this.diasPago = diasPago;
+        this.personaContacto = personaContacto;
+        this.descMovimiento = descMovimiento;
+    }
+
     private Date fechaAlta;
-    private int tipo;
-    public static final int RECURRENTE = 0;
-    public static final int OCASIONAL = 1;
+    private TipoProveedor tipo;
     private List<Movimiento> movimientos;
-    private int estado;
-    public static final int INACTIVO = 0;
-    public static final int ACTIVO = 1;
-    public static final int SUSPENDIDO = 2;
+    private EstadoProveedor estado;
     private String categoria;
+    private String cuentaBanco;
     private Integer diasPago;
     private String personaContacto;
     private String descMovimiento;
+
+    @Override
+    public String toString() {
+        return "Proveedor{" + "fechaAlta=" + fechaAlta + ", tipo=" + tipo + ", estado=" + estado + ", categoria=" + categoria + ", cuentaBanco=" + cuentaBanco + ", diasPago=" + diasPago + ", personaContacto=" + personaContacto + ", descMovimiento=" + descMovimiento + '}';
+    }
+    
+    
 }

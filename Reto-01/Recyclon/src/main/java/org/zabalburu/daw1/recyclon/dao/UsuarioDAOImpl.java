@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.zabalburu.daw1.gestionempleados.dao;
+package org.zabalburu.daw1.recyclon.dao;
 
 import java.util.ArrayList;
 import java.util.List;

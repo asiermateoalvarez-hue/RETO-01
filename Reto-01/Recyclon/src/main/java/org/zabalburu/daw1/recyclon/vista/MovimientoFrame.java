@@ -79,7 +79,7 @@ public class MovimientoFrame extends JFrame {
         this.setSize(dmVentana);
         this.setUndecorated(true);
 
-        this.servicio = new RecyclonServicio();
+        this.servicio = RecyclonServicio.getServicio();
         this.usuarioLogeado = usuario;
 
         this.clientes = servicio.getClientes();

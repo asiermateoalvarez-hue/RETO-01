@@ -30,7 +30,7 @@ import org.zabalburu.daw1.recyclon.servicio.RecyclonServicio;
  */
 public class LoginFrame extends JFrame {
     
-    private static RecyclonServicio servicio = new RecyclonServicio();
+    private static RecyclonServicio servicio = RecyclonServicio.getServicio();
 
     private Dimension dmVentana = new Dimension(Config.LOGIN_WIDTH, Config.LOGIN_HEIGHT);
 

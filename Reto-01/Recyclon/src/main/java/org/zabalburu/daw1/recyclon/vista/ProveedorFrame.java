@@ -126,7 +126,7 @@ public class ProveedorFrame extends JFrame {
         this.setTitle("Recyclon - GESTION PROVEEDORES");
         this.setSize(dmVentana);
         this.setUndecorated(true);
-        this.servicio = new RecyclonServicio();
+        this.servicio = RecyclonServicio.getServicio();
         this.proveedores = servicio.getProveedores();
         if (!proveedores.isEmpty()) {
             mostrarProveedores(0);
@@ -424,9 +424,10 @@ public class ProveedorFrame extends JFrame {
                 p.setCif(txtCif.getText());
 
                 p.setEmail(txtEmail.getText());
-
-                p.setTelefono(((Number) fmtTelefono.getValue()).toString());
-
+                if (fmtTelefono.getValue() != null){
+                    p.setTelefono(((Number) fmtTelefono.getValue()).toString());
+                }
+                
                 p.setTipo((TipoProveedor) cbxTipo.getSelectedItem());
 
                 p.setCuentaBanco(txtCuenta.getText());

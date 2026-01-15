@@ -33,6 +33,12 @@ import org.zabalburu.daw1.recyclon.util.TipoProveedor;
  * @author Equipo03
  */
 public class RecyclonServicio {
+    
+    private static RecyclonServicio servicio = new RecyclonServicio();
+    
+    public static RecyclonServicio getServicio(){
+        return servicio;
+    }
 
     private ClienteDAO clienteDao = new ClienteList();
     private MovimientoDAO movimientoDao = new MovimientoList();
@@ -41,7 +47,10 @@ public class RecyclonServicio {
 
     // ==================== CREACION DE DATOS ====================
     // ==================== CREACION DE DATOS ====================
-    public RecyclonServicio() {
+    private RecyclonServicio() {
+        if (clienteDao.getClientes().size() > 0){
+            return;
+        }
         // ==================== USUARIOS ====================
         registrarUsuariosPrueba(new Usuario(1, "David", "Duque", "DavidDuque", "david"), "david");
         registrarUsuariosPrueba(new Usuario(2, "Asier", "Mateo", "AsierMateo", "asier"), "asier");

@@ -44,7 +44,7 @@ import org.zabalburu.daw1.recyclon.util.TipoMovimiento;
  */
 public class MovimientoDialog extends JDialog {
 
-    private static RecyclonServicio servicio = new RecyclonServicio();
+    private static RecyclonServicio servicio = RecyclonServicio.getServicio();
     private Movimiento movimiento;
     private boolean guardado = false;
     private int tipoOperacion; // 1 = COBROS, 2 = GASTOS

@@ -115,7 +115,7 @@ public class ClientesFrame extends JFrame {
         this.setTitle("Recyclon - GESTION CLIENTES");
         this.setSize(dmVentana);
         this.setUndecorated(true);
-        this.servicio = new RecyclonServicio();
+        this.servicio = RecyclonServicio.getServicio();
         this.clientes = servicio.getClientes();
         if (!clientes.isEmpty()) {
             mostrar();

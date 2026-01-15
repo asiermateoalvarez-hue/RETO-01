@@ -18,8 +18,8 @@ org\zabalburu\daw1\recyclon\dao\UsuarioDAOImpl.class
 org\zabalburu\daw1\recyclon\vista\ProveedorFrame.class
 org\zabalburu\daw1\recyclon\dao\ClienteList.class
 org\zabalburu\daw1\recyclon\util\EstadoProveedor.class
-org\zabalburu\daw1\recyclon\Servicio\RecyclonServicio.class
 org\zabalburu\daw1\recyclon\modelo\Cliente.class
+org\zabalburu\daw1\recyclon\servicio\RecyclonServicio.class
 org\zabalburu\daw1\recyclon\util\PasswordManager.class
 org\zabalburu\daw1\recyclon\vista\MenuFrame.class
 org\zabalburu\daw1\recyclon\vista\ClientesFrame.class

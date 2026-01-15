@@ -371,7 +371,6 @@ public class ClientesFrame extends JFrame {
             txtProvincia.setText("");
             txtCiudad.setText("");
             txtEstado.setText("");
-            txtTelefono.setText("");
             Image img = new ImageIcon("/imagenes/noUser.png").getImage();
             lblLogoEmpresa.setIcon(Config.cargarIcono("noUser.png", 50, 50));
         } else {
@@ -385,7 +384,6 @@ public class ClientesFrame extends JFrame {
             txtProvincia.setText(actual.getProvincia());
             txtCiudad.setText(actual.getCiudad());
             txtEstado.setText("");
-            txtTelefono.setText(actual.getTelefono());
             Image img;
             if (actual.getLogo() != null) {
                 lblLogoEmpresa.setIcon(Config.cargarIcono(actual.getLogo(), 100, 100));
@@ -408,8 +406,6 @@ public class ClientesFrame extends JFrame {
         txtCiudad.setEnabled(estado
                 != CONSULTA);
         txtEstado.setEnabled(estado
-                != CONSULTA);
-        txtTelefono.setEnabled(estado
                 != CONSULTA);
 
         btnPrimero.setEnabled(posicionActual
@@ -467,19 +463,7 @@ public class ClientesFrame extends JFrame {
         cli.setFechaAlta((Date) fmtFecha.getValue());
         cli.setProvincia(txtProvincia.getText());
         cli.setCiudad(txtCiudad.getText());
-        //cli.setEstado(EstadoCliente.valueOf(txtEstado.getText().toUpperCase())); 
-        /*  if (txtEstado.isEmpty()) {
-        // Si está vacío, le ponemos uno por defecto (ejemplo: ALTA)
-         cli.setEstado(EstadoCliente.ALTA);
-        } else {
-         try {
-        cli.setEstado(EstadoCliente.valueOf(textoEstado));
-    } catch (IllegalArgumentException ex) {
-        // Si escribe algo que no existe, también ponemos ALTA por defecto
-        cli.setEstado(EstadoCliente.ALTA);
-        javax.swing.JOptionPane.showMessageDialog(this, "Estado no válido. Se asignó ALTA.");
-    }
-}*/
+        
         cli.setTelefono(txtTelefono.getText());
         if (estado == ALTA) {
             servicio.addCliente(cli);
@@ -521,16 +505,6 @@ public class ClientesFrame extends JFrame {
                     "Validación",
                     JOptionPane.WARNING_MESSAGE);
             txtEmail.requestFocus();
-            return false;
-        }
-
-        // Validar Teléfono
-        if (txtTelefono.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "El teléfono es obligatorio",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE);
-            txtTelefono.requestFocus();
             return false;
         }
 
